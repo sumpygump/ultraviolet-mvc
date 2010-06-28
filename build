@@ -1,0 +1,32 @@
+#!/bin/bash
+ERRLOG=../build.err.log
+
+# Cleanup file
+if [ -e $ERRLOG ]; then
+    rm $ERRLOG
+fi
+
+printf "\E[32m" #green
+echo "Compiling ... "
+printf "\E[34m" #blue
+
+cd bin
+make 2> >(tee $ERRLOG >&2)
+
+if [ $? -eq 0 ]
+then
+    printf "\E[32m" #green
+    echo Done.
+    printf "\E[37m" #white
+    exit 0
+else
+    printf "\E[31m" #red
+    echo "Errors!"
+    # If error log exists
+    if [ -e $ERRLOG ]; then
+        echo Errors written to $ERRLOG.
+    fi
+    printf "\E[37m" #white
+    exit 1
+fi
+

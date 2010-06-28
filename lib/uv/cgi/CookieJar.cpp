@@ -1,0 +1,96 @@
+/**
+ *  
+ */
+
+#include <string>
+#include <iostream>
+
+#include "CookieJar.h"
+#include "../core/Strlib.h"
+
+/**
+ *  
+ */
+uv::CookieJar::CookieJar()
+{
+}
+
+/**
+ *  
+ */
+void uv::CookieJar::readCookies(std::string cookieString)
+{
+    std::string::size_type pos = 0;
+    std::string::size_type oldPos, limit;
+    std::string::size_type sepLen = std::string(";").length();
+    std::string name, value;
+
+    oldPos = pos;
+    limit  = 0;
+
+    while (true) {
+        pos = cookieString.find("=", oldPos);
+
+        if (std::string::npos == pos) {
+            break;
+        }
+
+        limit = cookieString.find(";", pos);
+
+        if (std::string::npos == limit) {
+            limit = cookieString.length();
+        }
+
+        // Create a new cookie
+        Cookie* cookie = new Cookie();
+
+        // Retrieve the cookie name
+        name  = cookieString.substr(oldPos, pos - oldPos);
+        Strlib::trim(name);
+
+        // Retrieve the cookie value
+        value = cookieString.substr(pos + 1, limit - pos - 1);
+
+        // If the value is enclosed in quotes, remove the quotes
+        if (value.substr(0, 1) == "\""
+            && value.substr(value.length() - 1, 1) == "\""
+        ) {
+            value = value.substr(1, value.length() - 2);
+        }
+
+        cookie->setName(name);
+        cookie->setValue(value);
+
+        // Add cookie to the jar
+        addCookie(cookie);
+
+        oldPos = limit + sepLen;
+    }
+}
+
+/**
+ *  
+ */
+int uv::CookieJar::addCookie(Cookie * cookie)
+{
+    cookies.push_back(cookie);
+    return (int) cookies.size();
+}
+
+/**
+ *  
+ */
+std::string uv::CookieJar::list()
+{
+    std::vector<Cookie*>::const_iterator cookieIterator;
+    std::vector<Cookie*>::const_iterator cookieBegin = cookies.begin();
+    std::vector<Cookie*>::const_iterator cookieEnd = cookies.end();
+    std::string output = "";
+
+    for (cookieIterator = cookieBegin; cookieIterator < cookieEnd; cookieIterator++) {
+        output.append((*cookieIterator)->toString());
+        output.append("\n");
+    }
+
+    return output;
+}

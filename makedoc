@@ -1,0 +1,61 @@
+#!/bin/bash
+# Bash script to generage doxygen documentation for UltraViolet C++
+
+DOXCFG=doc/doxygenConfig
+ERRLOG=doc/doxygen.err.log
+OUTLOG=doc/doxygen.log
+
+# Flag for verbose output
+verbose="0"
+
+# Handle arguments
+for arg in "$@"
+do
+    case "$arg" in
+    -v*)    verbose="1"
+            ;; 
+    esac
+done
+
+# Cleanup file
+if [ -e $ERRLOG ]; then
+    rm $ERRLOG
+fi
+
+# Execute the doxygen command to generate the documentation
+printf "\E[34m" #blue
+if [ $verbose = "1" ]
+then
+    # Write to terminal and to log files (capture stdout and stderr separately)
+    echo "Creating doxygen documentation ..."
+    doxygen $DOXCFG > >(tee $OUTLOG) 2> >(tee $ERRLOG >&2)
+else
+    # Send stdout and stderr to the corresponding files (output hidden from terminal)
+    printf "Creating doxygen documentation ... "
+    doxygen $DOXCFG > $OUTLOG 2> $ERRLOG
+fi
+
+printf "\E[32m" #green
+echo "Done."
+
+printf "\E[34m" #blue
+if [ $verbose = "1" ]
+then
+    echo "Output also written to $OUTLOG"
+else
+    echo "Output written to $OUTLOG"
+fi
+
+# If error log exists
+if [ -e $ERRLOG ]; then
+    printf "\E[31m" #red
+    # Get the count of lines in the error log
+    # output of this command is "<number> <filename>"
+    errorcount=`wc -l $ERRLOG`
+
+    # When displaying the errorcount, the funny syntax splits it
+    # by spaces and show the first value (the number)
+    echo "Errors written to $ERRLOG (${errorcount% *} lines)"
+fi
+
+printf "\E[37m" #white
