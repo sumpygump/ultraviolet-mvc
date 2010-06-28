@@ -9,8 +9,8 @@
 #include <fstream>
 
 #include "File.h"
-#include "../core/Random.h"
-#include "../core/Strlib.h"
+#include "Random.h"
+#include "Strlib.h"
 
 /**
  *  
