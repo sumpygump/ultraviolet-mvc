@@ -61,7 +61,7 @@ int main()
          << "<html>"
          << "<head>"
          << "<title>UltraViolet</title>" << std::endl
-         << "<style type=\"text/css\">body{margin:0;font-size:13px;font-family:sans-serif;padding:0 2em;background-color:#e6ddd5;}#contain{background-color:#fff;max-width:65em;min-width:20em;margin:4em auto;padding:3em;-moz-border-radius:10px;border:1px solid threedshadow;}h1{border-bottom:1px solid #e6ddd5;font-size:160%;font-weight:normal;margin:0 0 0.6em;}h2{border-bottom:1px solid #e6ddd5;font-size:120%;font-weight:normal;margin:0.6em 0;}td.uv-attr{font-size:13px;font-weight:bold;text-align:right;padding-right:1em;}td.uv-value{font-family:monospace;}</style>" << std::endl
+         << "<style type=\"text/css\">body{margin:0;font-size:13px;font-family:sans-serif;padding:0 2em;background-color:#e6ddd5;}#contain{background-color:#fff;max-width:65em;min-width:20em;margin:4em auto;padding:3em;-moz-border-radius:10px;-webkit-border-radius:10px;border:1px solid threedshadow;}h1{border-bottom:1px solid #e6ddd5;font-size:160%;font-weight:normal;margin:0 0 0.6em;}h2{border-bottom:1px solid #e6ddd5;font-size:120%;font-weight:normal;margin:0.6em 0;}td.uv-attr{font-size:13px;font-weight:bold;text-align:right;padding-right:1em;}td.uv-value{font-family:monospace;width:80%;word-wrap:break-word;}</style>" << std::endl
          << "</head>" << std::endl
          << "<body>" << std::endl
          << "<div id=\"contain\">" << std::endl
