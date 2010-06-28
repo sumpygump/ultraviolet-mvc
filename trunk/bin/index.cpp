@@ -16,6 +16,7 @@
 #include "Info.h"
 #include "Cookie.h"
 #include "CookieJar.h"
+#include "Random.h"
 
 /**
  *  

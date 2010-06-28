@@ -6,7 +6,7 @@
 
 #include "Post.h"
 #include "File.h"
-#include "../core/Strlib.h"
+#include "Strlib.h"
 
 /**
  * Parse input 

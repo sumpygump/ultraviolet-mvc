@@ -33,10 +33,10 @@ core : ${CORE_OBJECTS}
 mvc : ${MVC_OBJECTS}
 
 index.o : index.cpp
-	${EXEC} ${CGI_OPTION} -c index.cpp
+	${EXEC} ${CGI_OPTION} ${CORE_OPTION} -c index.cpp
 
 File.o : File.cpp File.h
-	${EXEC} ${CGI_OPTION} -c ${CGI_PATH}/File.cpp
+	${EXEC} ${CGI_OPTION} ${CORE_OPTION} -c ${CGI_PATH}/File.cpp
 
 Headers.o : Headers.cpp Headers.h
 	${EXEC} ${CGI_OPTION} -c ${CGI_PATH}/Headers.cpp
@@ -45,7 +45,7 @@ Input.o : Input.cpp Input.h
 	${EXEC} ${CGI_OPTION} -c ${CGI_PATH}/Input.cpp
 
 Post.o : Post.cpp Post.h
-	${EXEC} ${CGI_OPTION} -c ${CGI_PATH}/Post.cpp
+	${EXEC} ${CGI_OPTION} ${CORE_OPTION} -c ${CGI_PATH}/Post.cpp
 
 Request.o : Request.cpp Request.h
 	${EXEC} ${CGI_OPTION} -c ${CGI_PATH}/Request.cpp
