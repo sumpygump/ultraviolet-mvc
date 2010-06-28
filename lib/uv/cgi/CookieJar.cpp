@@ -6,7 +6,7 @@
 #include <iostream>
 
 #include "CookieJar.h"
-#include "../core/Strlib.h"
+#include "Strlib.h"
 
 /**
  *  

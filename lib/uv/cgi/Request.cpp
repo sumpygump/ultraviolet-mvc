@@ -6,7 +6,7 @@
 
 #include "Request.h"
 #include "Url.h"
-#include "../core/Strlib.h"
+#include "Strlib.h"
 
 /**
  * Parse the input and store the vars
