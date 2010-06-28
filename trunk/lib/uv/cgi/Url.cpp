@@ -5,7 +5,7 @@
 #include <cctype>
 
 #include "Url.h"
-#include "../core/Strlib.h"
+#include "Strlib.h"
 
 /**
  *  

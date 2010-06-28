@@ -48,16 +48,16 @@ Post.o : Post.cpp Post.h
 	${EXEC} ${CGI_OPTION} ${CORE_OPTION} -c ${CGI_PATH}/Post.cpp
 
 Request.o : Request.cpp Request.h
-	${EXEC} ${CGI_OPTION} -c ${CGI_PATH}/Request.cpp
+	${EXEC} ${CGI_OPTION} ${CORE_OPTION} -c ${CGI_PATH}/Request.cpp
 
 Url.o : Url.cpp Url.h
-	${EXEC} ${CGI_OPTION} -c ${CGI_PATH}/Url.cpp
+	${EXEC} ${CGI_OPTION} ${CORE_OPTION} -c ${CGI_PATH}/Url.cpp
 
 Cookie.o : Cookie.cpp Cookie.h
 	${EXEC} ${CGI_OPTION} -c ${CGI_PATH}/Cookie.cpp
 
 CookieJar.o : CookieJar.cpp CookieJar.h
-	${EXEC} ${CGI_OPTION} -c ${CGI_PATH}/CookieJar.cpp
+	${EXEC} ${CGI_OPTION} ${CORE_OPTION} -c ${CGI_PATH}/CookieJar.cpp
 
 Environment.o : Environment.cpp Environment.h
 	${EXEC} ${CGI_OPTION} -c ${CGI_PATH}/Environment.cpp
