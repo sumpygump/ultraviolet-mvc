@@ -1,15 +1,23 @@
-/**
- * Cookie class header file
+/*~
+ * Ultraviolet MVC
+ * Copyright (C) 2010 Lost Mind Software
  *
- * @author Adam Ranfelt <adamRenny@gmail.com>
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ *
  * @version $Id$
+ */
+
+/** @file Cookie.h
+ * Ultraviolet CGI Cookie class header file.
+ *
+ * @see Cookie.cpp
  */
 
 #ifndef UV_COOKIE_H_
 #define UV_COOKIE_H_
 
 /**
- * UltraViolet Namespace
+ * Ultraviolet Namespace
  */
 namespace uv
 {

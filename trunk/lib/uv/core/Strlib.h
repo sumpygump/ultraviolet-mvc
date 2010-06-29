@@ -1,5 +1,16 @@
+/*~
+ * Ultraviolet MVC
+ * Copyright (C) 2010 Lost Mind Software
+ *
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ *
+ * @version $Id$
+ */
+
 /** @file Strlib.h
- * Header file for Strlib class
+ * Ultraviolet Core Strlib class header file.
+ *
+ * @see Strlib.cpp
  */
 
 #ifndef UV_CORE_STRLIB_H_

@@ -1,8 +1,16 @@
-/**
- * Post class file
+/*~
+ * Ultraviolet MVC
+ * Copyright (C) 2010 Lost Mind Software
  *
- * @author Jansen Price <jansen.price@gmail.com>
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ *
  * @version $Id$
+ */
+
+/** @file Post.h
+ * Ultraviolet CGI Post class header file.
+ *
+ * @see Post.cpp
  */
 
 #ifndef UV_POST_H_
@@ -12,7 +20,7 @@
 #include "File.h"
 
 /**
- * UltraViolet Namespace
+ * Ultraviolet Namespace
  */
 namespace uv
 {

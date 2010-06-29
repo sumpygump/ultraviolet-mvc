@@ -1,5 +1,16 @@
-/**
- *  
+/*~
+ * Ultraviolet MVC
+ * Copyright (C) 2010 Lost Mind Software
+ *
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ *
+ * @version $Id$
+ */
+
+/** @file Headers.cpp
+ * Ultraviolet CGI Headers class definition.
+ *
+ * Prepares, assembles and outputs HTTP headers.
  */
 
 #include <string>

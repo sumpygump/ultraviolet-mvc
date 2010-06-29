@@ -1,12 +1,23 @@
+/*~
+ * Ultraviolet MVC
+ * Copyright (C) 2010 Lost Mind Software
+ *
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ *
+ * @version $Id$
+ */
+
 /** @file Random.h
- * Header file for Random class (uv core)
+ * Ultraviolet Core Random class header file.
+ *
+ * @see Random.cpp
  */
 
 #ifndef UV_CORE_RANDOM_H_
 #define UV_CORE_RANDOM_H_
 
 /**
- * UltraViolet namespace
+ * Ultraviolet namespace
  */
 namespace uv
 {

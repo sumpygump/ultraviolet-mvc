@@ -1,11 +1,17 @@
-/**
- *  
+/*~
+ * Ultraviolet MVC
+ * Copyright (C) 2010 Maru Mari Katana Sashimi
+ *
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ *
+ * @version $Id$
  */
 
 #include <iostream>
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <sstream>
 
 #include "Input.h"
 #include "Environment.h"
@@ -17,6 +23,7 @@
 #include "Cookie.h"
 #include "CookieJar.h"
 #include "Random.h"
+#include "InternalChrome.h"
 
 /**
  *  
@@ -30,8 +37,9 @@ int main()
 
     srand(time(NULL));
 
+    headers.set("Status: 404");
     headers.set("Content-type: text/html");
-    headers.set("X-Custom-header: null");
+    headers.set("X-Powered-By: Ultraviolet/0.8");
     headers.set("Set-Cookie: testcookie1=\"true\"; max-age=1024; comment=cookies have comments");
     headers.set("Set-Cookie: id=2454; max-age=1024; version=1");
     headers.set("Set-Cookie: userid=154844746557324485445; max-age=1024; version=1");
@@ -56,19 +64,15 @@ int main()
     post.parseInput(inputData, env.get("CONTENT_TYPE"));
 
     std::string br = "<br />";
+    std::ostringstream oss (std::ostringstream::out);
+    uv::InternalChrome ic;
 
-    std::cout << headers << std::endl
-         << "<html>"
-         << "<head>"
-         << "<title>UltraViolet</title>" << std::endl
-         << "<style type=\"text/css\">body{margin:0;font-size:13px;font-family:sans-serif;padding:0 2em;background-color:#e6ddd5;}#contain{background-color:#fff;max-width:65em;min-width:20em;margin:4em auto;padding:3em;-moz-border-radius:10px;-webkit-border-radius:10px;border:1px solid threedshadow;}h1{border-bottom:1px solid #e6ddd5;font-size:160%;font-weight:normal;margin:0 0 0.6em;}h2{border-bottom:1px solid #e6ddd5;font-size:120%;font-weight:normal;margin:0.6em 0;}td.uv-attr{font-size:13px;font-weight:bold;text-align:right;padding-right:1em;}td.uv-value{font-family:monospace;width:80%;word-wrap:break-word;}</style>" << std::endl
-         << "</head>" << std::endl
-         << "<body>" << std::endl
-         << "<div id=\"contain\">" << std::endl
-         ;
+    // Begin output (send headers)
+    std::cout << headers << std::endl;
 
-    if (get.keyExists("test")) {
-        std::cout << "<h1>UltraViolet : Test POST</h1>" << std::endl
+    if (get.keyExists("test") && get["test"] == "post") {
+        ic.setTitle("test POST | Ultraviolet MVC");
+        oss << "<h1>UltraViolet : Test POST</h1>" << std::endl
             << "<p>Submit the form to test the POST request.</p>" << std::endl
             << "<form action=\"\" method=\"post\">"
             << "<label>field1 <input type=\"text\" name=\"field1\" value=\"test value\" /></label>" << br
@@ -86,11 +90,11 @@ int main()
             << "</form>" << std::endl
             << "<p>Use the querystring <a href=\"?test=post&amp;display-stdin=true\">?display-stdin=true</a> to display stdin data (for troubleshooting)</a></p>";
     } else {
-        std::cout << "<h1>UltraViolet is Working</h1>" << std::endl
+        oss << "<h1>UltraViolet is Working</h1>" << std::endl
             << "<p><a href=\"?test=post\">Test POST</a></p>" << std::endl;
     }
 
-    std::cout << "<h2>Environment</h2>\n"
+    oss << "<h2>Environment</h2>\n"
         << uv::Info::displayEnvironment(env)
         << "<h2>Other Data:</h2>\n"
         << "<strong>GET vars</strong><pre>" << get.list() << "</pre>"
@@ -104,15 +108,13 @@ int main()
         filedump.append(" [" + curr->first + "] => \n" + curr->second.list() + "\n");
     }
 
-    std::cout << filedump << "</pre>";
+    oss << filedump << "</pre>";
 
     if (get.getParam("display-stdin") == "true") {
-        std::cout << "<pre>stdin:\n" << inputData << "</pre>" << std::endl;
+        oss << "<pre>stdin:\n" << inputData << "</pre>" << std::endl;
     }
 
-    std::cout << "</div>"
-        << "</body>"
-        << "</html>" << std::endl;
+    std::cout << ic.wrapInChrome(oss.str());
 
     return 0;
 }
