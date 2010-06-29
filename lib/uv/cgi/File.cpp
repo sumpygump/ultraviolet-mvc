@@ -1,8 +1,16 @@
-/** @file File.cpp
- * File class file
+/*~
+ * Ultraviolet MVC
+ * Copyright (C) 2010 Lost Mind Software
  *
- * @author Jansen Price <jansen.price@gmail.com>
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ *
  * @version $Id$
+ */
+
+/** @file File.cpp
+ * Ultraviolet CGI File class definition.
+ *
+ * A File object represents a form uploaded file
  */
 
 #include <iostream>

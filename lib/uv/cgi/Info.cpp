@@ -1,5 +1,16 @@
-/**
- *  
+/*~
+ * Ultraviolet MVC
+ * Copyright (C) 2010 Lost Mind Software
+ *
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ *
+ * @version $Id$
+ */
+
+/** @file Info.cpp
+ * Ultraviolet CGI Info class definition.
+ *
+ * Provides utilities to display information about the CGI system
  */
 
 #include <iostream>
@@ -25,6 +36,7 @@ std::string uv::Info::displayEnvironment(Environment env)
     output.append(avPairRow("Server name", env[Environment::kServerName]));
     output.append(avPairRow("Script name", env[Environment::kScriptName]));
     output.append(avPairRow("Request method", env[Environment::kRequestMethod]));
+    output.append(avPairRow("Request URI", env[Environment::kRequestUri]));
     output.append(avPairRow("Query string", env[Environment::kQueryString]));
     output.append(avPairRow("Content length", env[Environment::kContentLength]));
     output.append(avPairRow("Content type", env[Environment::kContentType]));

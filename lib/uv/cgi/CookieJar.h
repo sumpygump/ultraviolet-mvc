@@ -1,8 +1,16 @@
-/**
- * Cookie Jar class header file
+/*~
+ * Ultraviolet MVC
+ * Copyright (C) 2010 Lost Mind Software
  *
- * @author Jansen Price <jansen.price@gmail.com>
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ *
  * @version $Id$
+ */
+
+/** @file CookieJar.h
+ * Ultraviolet CGI CookieJar class header file.
+ *
+ * @see CookieJar.cpp
  */
 
 #ifndef UV_COOKIEJAR_H_
@@ -13,7 +21,7 @@
 #include "Cookie.h"
 
 /**
- * UltraViolet Namespace
+ * Ultraviolet Namespace
  */
 namespace uv
 {

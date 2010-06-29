@@ -1,5 +1,18 @@
-/**
- *  
+/*~
+ * Ultraviolet MVC
+ * Copyright (C) 2010 Lost Mind Software
+ *
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ *
+ * @version $Id$
+ */
+
+/** @file CookieJar.cpp
+ * Ultraviolet CGI CookieJar class definition.
+ *
+ * A CookieJar object is a container for Cookie objects.
+ *
+ * @see uv::Cookie
  */
 
 #include <string>

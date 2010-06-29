@@ -1,9 +1,16 @@
-/**
- * Headers class header file
+/*~
+ * Ultraviolet MVC
+ * Copyright (C) 2010 Lost Mind Software
  *
- * @author Adam Ranfelt <adamRenny@gmail.com>
- * @author Jansen Price <sumpygump@gmail.com>
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ *
  * @version $Id$
+ */
+
+/** @file Headers.h
+ * Ultraviolet CGI Headers class header file.
+ *
+ * @see Headers.cpp
  */
 
 #ifndef UV_HEADERS_H_
@@ -12,7 +19,7 @@
 #include <vector>
 
 /**
- * UltraViolet Namespace
+ * Ultraviolet Namespace
  */
 namespace uv
 {

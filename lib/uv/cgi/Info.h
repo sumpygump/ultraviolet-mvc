@@ -1,8 +1,16 @@
-/**
- * Info class header file
+/*~
+ * Ultraviolet MVC
+ * Copyright (C) 2010 Lost Mind Software
  *
- * @author Jansen Price <jansen.price@gmail.com>
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ *
  * @version $Id$
+ */
+
+/** @file Info.h
+ * Ultraviolet CGI Info class header file.
+ *
+ * @see Info.cpp
  */
 
 #ifndef UV_INFO_H_
@@ -11,7 +19,7 @@
 #include "Environment.h"
 
 /**
- * UltraViolet Namespace
+ * Ultraviolet Namespace
  */
 namespace uv
 {

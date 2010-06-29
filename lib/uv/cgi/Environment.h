@@ -1,9 +1,16 @@
-/**
- * Environment class header file
+/*~
+ * Ultraviolet MVC
+ * Copyright (C) 2010 Lost Mind Software
  *
- * @author Adam Ranfelt <adamRenny@gmail.com>
- * @author Jansen Price <jansen.price@gmail.com>
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ *
  * @version $Id$
+ */
+
+/** @file Environment.h
+ * Ultraviolet CGI Environment class header file.
+ *
+ * @see Environment.cpp
  */
 
 #ifndef UV_ENVIRONMENT_H_
@@ -12,7 +19,7 @@
 #include "Input.h"
 
 /**
- * UltraViolet Namespace
+ * Ultraviolet Namespace
  */
 namespace uv
 {
@@ -21,6 +28,7 @@ namespace uv
  * Environment class provides an interface into CGI Environment Variables
  *
  * @author Adam Ranfelt <adamRenny@gmail.com> 
+ * @author Jansen Price <jansen.price@gmail.com> 
  * @version $Id$
  */
 class Environment

@@ -1,5 +1,16 @@
-/**
+/*~
+ * Ultraviolet MVC
+ * Copyright (C) 2010 Lost Mind Software
  *
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ *
+ * @version $Id$
+ */
+
+/** @file Input.cpp
+ * Ultraviolet CGI Input class definition.
+ *
+ * Input is a wrapper for input passed to initialization of the CGI system.
  */
 
 #include <iostream>

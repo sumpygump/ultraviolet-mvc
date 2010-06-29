@@ -1,8 +1,16 @@
-/**
- * Request class header file
+/*~
+ * Ultraviolet MVC
+ * Copyright (C) 2010 Lost Mind Software
  *
- * @author Jansen Price <jansen.price@gmail.com>
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ *
  * @version $Id$
+ */
+
+/** @file Request.h
+ * Ultraviolet CGI Request class header file.
+ *
+ * @see Request.cpp
  */
 
 #ifndef UV_REQUEST_H_
@@ -13,7 +21,7 @@
 #include <map>
 
 /**
- * UltraViolet Namespace
+ * Ultraviolet Namespace
  */
 namespace uv
 {
@@ -47,6 +55,11 @@ class Request
      * Return the value for a param, if it exists
      */
     std::string getParam(std::string key);
+
+    /**
+     * Operator [] to retrieve params
+     */
+    std::string operator[](const std::string name);
 
     /**
      * Generate a list of the vars stored in this object

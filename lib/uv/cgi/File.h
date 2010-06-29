@@ -1,8 +1,16 @@
-/**
- * File upload header class file
+/*~
+ * Ultraviolet MVC
+ * Copyright (C) 2010 Lost Mind Software
  *
- * @author Jansen Price <jansen.price@gmail.com>
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ *
  * @version $Id$
+ */
+
+/** @file File.h
+ * Ultraviolet CGI File class header file.
+ *
+ * @see File.cpp
  */
 
 #ifndef UV_FILE_H_
@@ -11,7 +19,7 @@
 #include <string>
 
 /**
- * UltraViolet Namespace
+ * Ultraviolet Namespace
  */
 namespace uv
 {

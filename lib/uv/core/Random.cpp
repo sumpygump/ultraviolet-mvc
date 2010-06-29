@@ -1,3 +1,17 @@
+/*~
+ * Ultraviolet MVC
+ * Copyright (C) 2010 Lost Mind Software
+ *
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ *
+ * @version $Id$
+ */
+
+/** @file Random.cpp
+ * Ultraviolet Core Random class definition.
+ *
+ * Generate random things.
+ */
 
 #include <cstdlib>
 #include <string>

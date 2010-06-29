@@ -1,5 +1,18 @@
+/*~
+ * Ultraviolet MVC
+ * Copyright (C) 2010 Lost Mind Software
+ *
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ *
+ * @version $Id$
+ */
+
 /** @file Post.cpp
- *  Class for handling form posts 
+ * Ultraviolet CGI Post class definition.
+ *
+ * Handles a form post via HTTP POST request.
+ *
+ * @see uv::Request
  */
 
 #include <iterator>

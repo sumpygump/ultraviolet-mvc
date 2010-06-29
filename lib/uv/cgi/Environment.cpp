@@ -1,5 +1,16 @@
-/**
- *  
+/*~
+ * Ultraviolet MVC
+ * Copyright (C) 2010 Lost Mind Software
+ *
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ *
+ * @version $Id$
+ */
+
+/** @file Environment.cpp
+ * Ultraviolet CGI Environment class definition.
+ *
+ * A wrapper class that provides access to environment variables
  */
 
 #include <string>
