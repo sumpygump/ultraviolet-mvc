@@ -37,7 +37,6 @@ int main()
 
     srand(time(NULL));
 
-    headers.set("Status: 404");
     headers.set("Content-type: text/html");
     headers.set("X-Powered-By: Ultraviolet/0.8");
     headers.set("Set-Cookie: testcookie1=\"true\"; max-age=1024; comment=cookies have comments");
@@ -67,30 +66,34 @@ int main()
     std::ostringstream oss (std::ostringstream::out);
     uv::InternalChrome ic;
 
-    // Begin output (send headers)
-    std::cout << headers << std::endl;
-
-    if (get.keyExists("test") && get["test"] == "post") {
-        ic.setTitle("test POST | Ultraviolet MVC");
-        oss << "<h1>UltraViolet : Test POST</h1>" << std::endl
-            << "<p>Submit the form to test the POST request.</p>" << std::endl
-            << "<form action=\"\" method=\"post\">"
-            << "<label>field1 <input type=\"text\" name=\"field1\" value=\"test value\" /></label>" << br
-            << "<label>field2 <input type=\"text\" name=\"field2\" value=\"test value 2\" /></label>" << br
-            << "<label>check1 <input type=\"checkbox\" name=\"check1\" value=\"1\" /></label>" << br
-            << "<input type=\"submit\" name=\"submit\" value=\"Submit\" />"
-            << "</form>" << std::endl
-            << "<p>Submit the form to test the multipart/form-data request.</p>" << std::endl
-            << "<form action=\"\" method=\"post\" enctype=\"multipart/form-data\">"
-            << "<label>field1 <input type=\"text\" name=\"field1\" value=\"test value\" /></label>" << br
-            << "<label>field2 <input type=\"text\" name=\"field2\" value=\"test value 2\" /></label>" << br
-            << "<label>testfile <input type=\"file\" name=\"testfile\" /></label>" << br
-            << "<label>testfile2 <input type=\"file\" name=\"testfile2\" /></label>" << br
-            << "<input type=\"submit\" name=\"submit\" value=\"Submit\" />"
-            << "</form>" << std::endl
-            << "<p>Use the querystring <a href=\"?test=post&amp;display-stdin=true\">?display-stdin=true</a> to display stdin data (for troubleshooting)</a></p>";
+    if (get.keyExists("test")) {
+        if (get["test"] == "post") {
+            ic.setTitle("test POST | Ultraviolet MVC");
+            oss << "<h1>Ultraviolet : Test POST</h1>" << std::endl
+                << "<p>Submit the form to test the POST request.</p>" << std::endl
+                << "<form action=\"\" method=\"post\">"
+                << "<label>field1 <input type=\"text\" name=\"field1\" value=\"test value\" /></label>" << br
+                << "<label>field2 <input type=\"text\" name=\"field2\" value=\"test value 2\" /></label>" << br
+                << "<label>check1 <input type=\"checkbox\" name=\"check1\" value=\"1\" /></label>" << br
+                << "<input type=\"submit\" name=\"submit\" value=\"Submit\" />"
+                << "</form>" << std::endl
+                << "<p>Submit the form to test the multipart/form-data request.</p>" << std::endl
+                << "<form action=\"\" method=\"post\" enctype=\"multipart/form-data\">"
+                << "<label>field1 <input type=\"text\" name=\"field1\" value=\"test value\" /></label>" << br
+                << "<label>field2 <input type=\"text\" name=\"field2\" value=\"test value 2\" /></label>" << br
+                << "<label>testfile <input type=\"file\" name=\"testfile\" /></label>" << br
+                << "<label>testfile2 <input type=\"file\" name=\"testfile2\" /></label>" << br
+                << "<input type=\"submit\" name=\"submit\" value=\"Submit\" />"
+                << "</form>" << std::endl
+                << "<p>Use the querystring <a href=\"?test=post&amp;display-stdin=true\">?display-stdin=true</a> to display stdin data (for troubleshooting)</a></p>";
+        } else if (get["test"] == "404") {
+            headers.set("Status: 404"); // example of 404 status
+            ic.setTitle("Error 404");
+            oss << "<h1 class=\"error\">404 Not Found</h1>"
+                << "<p class=\"error-message\">The file could not be found.</p>";
+        }
     } else {
-        oss << "<h1>UltraViolet is Working</h1>" << std::endl
+        oss << "<h1>Ultraviolet is Working</h1>" << std::endl
             << "<p><a href=\"?test=post\">Test POST</a></p>" << std::endl;
     }
 
@@ -114,7 +117,9 @@ int main()
         oss << "<pre>stdin:\n" << inputData << "</pre>" << std::endl;
     }
 
-    std::cout << ic.wrapInChrome(oss.str());
+    // Begin output (send headers)
+    std::cout << headers << std::endl;
+    std::cout << ic.wrapContent(oss.str());
 
     return 0;
 }
