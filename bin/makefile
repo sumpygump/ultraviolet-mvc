@@ -21,7 +21,6 @@ VIEW_OBJECTS = InternalChrome.o
 MVC_OBJECTS  = 
 
 application : ${APP_OBJECTS} ${CGI_OBJECTS} ${CORE_OBJECTS} ${VIEW_OBJECTS} index
-	cp index.cgi ../web/index.cgi
 
 index : ${APP_OBJECTS} ${CGI_OBJECTS} ${CORE_OBJECTS} ${VIEW_OBJECTS}
 	${EXEC} -o ${PROGRAM} ${APP_OBJECTS} ${CGI_OBJECTS} ${CORE_OBJECTS} ${VIEW_OBJECTS}

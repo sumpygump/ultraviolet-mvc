@@ -36,7 +36,7 @@ void uv::InternalChrome::setTitle(std::string title)
 /**
  *  
  */
-std::string uv::InternalChrome::wrapInChrome(std::string content)
+std::string uv::InternalChrome::wrapContent(std::string content)
 {
     std::ostringstream oss (std::ostringstream::out);
 
@@ -69,6 +69,8 @@ std::string uv::InternalChrome::getStyles()
         "h2{border-bottom:1px solid #e6ddd5;font-size:120%;font-weight:normal;margin:0.6em 0;}"
         "td.uv-attr{font-size:13px;font-weight:bold;text-align:right;padding-right:1em;}"
         "td.uv-value{font-family:monospace;width:80%;word-wrap:break-word;}"
+        ".error{color:#f00;}"
+        ".error-message{font-size:130%;}"
         "</style>" << std::endl;
 
     return oss.str();
