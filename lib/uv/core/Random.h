@@ -35,22 +35,22 @@ class Random
     /**
      * Default constructor
      */
-    Random();
+//    Random();
 
     /**
      * Constructor with seed
      */
-    Random(int seed);
+//    Random(int seed);
 
     /**
      * Set the randomize seed
      */
-    void setSeed(int seed);
+    static void setSeed(int seed);
     
     /**
      * Set the randomize seed
      */
-    void setSeed();
+    static void setSeed();
 
     /**
      * Generate a random string with specifed length
@@ -62,7 +62,7 @@ class Random
     /**
      * Indicates whether the seed has been set
      */
-    bool isSeeded;
+    static bool isSeeded;
 
 }; // class Random
 
