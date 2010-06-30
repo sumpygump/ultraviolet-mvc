@@ -37,11 +37,6 @@ class Request
 {
   public:
     /**
-     * Storage for the request vars 
-     */
-    std::map<std::string, std::string> vars;
-
-    /**
      * Parse the input and store the vars
      */
     void parseInput(std::string value);
@@ -65,6 +60,12 @@ class Request
      * Generate a list of the vars stored in this object
      */
     std::string list();
+    
+  protected:
+      /**
+       * Storage for the request vars 
+       */
+      std::map<std::string, std::string> vars;
 
 }; // class Request
 
