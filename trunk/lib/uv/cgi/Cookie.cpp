@@ -59,7 +59,7 @@ void uv::Cookie::setValue(std::string value)
 
 std::string uv::Cookie::toString()
 {
-    return this->name + ": " + this->value;
+    return this->name + "=" + this->value + ";";
 }
 
 namespace uv
