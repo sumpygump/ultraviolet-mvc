@@ -13,17 +13,17 @@
 #include <ctime>
 #include <sstream>
 
-#include "Input.h"
-#include "Environment.h"
-#include "Headers.h"
-#include "Request.h"
-#include "Post.h"
-#include "File.h"
-#include "Info.h"
-#include "Cookie.h"
-#include "CookieJar.h"
-#include "Random.h"
-#include "InternalChrome.h"
+#include "cgi/Input.h"
+#include "cgi/Environment.h"
+#include "cgi/Headers.h"
+#include "cgi/Request.h"
+#include "cgi/Post.h"
+#include "cgi/File.h"
+#include "cgi/Info.h"
+#include "cgi/Cookie.h"
+#include "cgi/CookieJar.h"
+#include "core/Random.h"
+#include "view/InternalChrome.h"
 
 /**
  *  

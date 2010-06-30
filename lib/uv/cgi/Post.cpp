@@ -19,7 +19,7 @@
 
 #include "Post.h"
 #include "File.h"
-#include "Strlib.h"
+#include "core/Strlib.h"
 
 /**
  * Parse input 
