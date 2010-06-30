@@ -9,7 +9,7 @@ LIB_PATH = ../lib
 CGI_PATH  = ${UV_PATH}/cgi
 CORE_PATH = ${UV_PATH}/core
 VIEW_PATH = ${UV_PATH}/view
-HASHLIB_PATH = ${LIB_PATH}/hashlibpp/src
+HASHLIB_PATH = ${LIB_PATH}/hashlibpp
 
 VPATH     = ${CGI_PATH}:${CORE_PATH}:${VIEW_PATH}:${HASHLIB_PATH}:${LIB_PATH}
 
@@ -102,7 +102,10 @@ clean-mvc:
 clean-web:
 	${RM} ${WEB_PATH}/${PROGRAM}
 
-clean: clean-app clean-cgi clean-web clean-core
+clean-hashlib:
+	${RM} ${HASHLIB_OBJECTS}
+
+clean: clean-app clean-cgi clean-web clean-core clean-hashlib
 
 hashlib : ${HASHLIB_OBJECTS}
 
