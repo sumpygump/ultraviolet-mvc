@@ -19,6 +19,7 @@
 #include <iostream>
 
 #include "CookieJar.h"
+#include "Cookie.h"
 #include "core/Strlib.h"
 
 /**
@@ -88,6 +89,26 @@ int uv::CookieJar::addCookie(Cookie * cookie)
 {
     cookies.push_back(cookie);
     return (int) cookies.size();
+}
+
+/**
+ *  
+ */
+uv::Cookie* uv::CookieJar::retrieve(std::string name)
+{
+    std::vector<Cookie*>::const_iterator cookieIterator;
+    std::vector<Cookie*>::const_iterator cookieBegin = cookies.begin();
+    std::vector<Cookie*>::const_iterator cookieEnd = cookies.end();
+
+    for (cookieIterator = cookieBegin; cookieIterator < cookieEnd; cookieIterator++) {
+        if ((*cookieIterator)->getName() == name) {
+            // Return pointer to the cookie object
+            return (*cookieIterator);
+        }
+    }
+
+    // Return pointer to new blank cookie
+    return new Cookie();
 }
 
 /**

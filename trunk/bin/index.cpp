@@ -22,6 +22,7 @@
 #include "cgi/Info.h"
 #include "cgi/Cookie.h"
 #include "cgi/CookieJar.h"
+#include "cgi/Session.h"
 #include "view/InternalChrome.h"
 
 /**
@@ -32,8 +33,9 @@ int main()
     typedef uv::Environment Environment;
     
     Environment env;
-    uv::Headers headers;
 
+    // Prepare headers
+    uv::Headers headers;
     headers.set("Content-type: text/html");
     headers.set("X-Powered-By: Ultraviolet/0.8");
     headers.set("Set-Cookie: testcookie1=\"true\"; max-age=1024; comment=cookies have comments");
@@ -41,15 +43,25 @@ int main()
     headers.set("Set-Cookie: userid=154844746557324485445; max-age=1024; version=1");
     headers.set("Set-Cookie: deleteme=; max-age=0"); // to delete a cookie, set max-age=0
 
-    //std::cout << headers << "uv::cgi started.<br />";
-
-    uv::Request get;
-    get.parseInput(env["QUERY_STRING"]);
-
+    // Read cookies
     uv::CookieJar cookieJar;
     cookieJar.readCookies(env[Environment::kHttpCookie]);
 
-    // Setup post
+    //std::cout << headers << "uv::cgi started.<br />";
+
+    // Set up session
+    uv::Cookie* sessionCookie = cookieJar.retrieve("UVSESSID");
+    if (sessionCookie->getName() == "") {
+        uv::Session *s = new uv::Session();
+        std::string sessionId = s->createId();
+        headers.set("Set-Cookie: UVSESSID=" + sessionId);
+    }
+
+    // Set up GET
+    uv::Request get;
+    get.parseInput(env[Environment::kQueryString]);
+
+    // Set up POST
     uv::Post post;
     uv::Input input;
     std::string inputData;
@@ -57,7 +69,7 @@ int main()
 
     input.read(&data[0], env.getContentLength());
     inputData = std::string(&data[0], env.getContentLength());
-    post.parseInput(inputData, env.get("CONTENT_TYPE"));
+    post.parseInput(inputData, env.get(Environment::kContentType));
 
     std::string br = "<br />";
     std::ostringstream oss (std::ostringstream::out);

@@ -40,6 +40,7 @@ std::string uv::Info::displayEnvironment(Environment env)
     output.append(avPairRow("Query string", env[Environment::kQueryString]));
     output.append(avPairRow("Content length", env[Environment::kContentLength]));
     output.append(avPairRow("Content type", env[Environment::kContentType]));
+    output.append(avPairRow("Remote addr", env[Environment::kRemoteAddr]));
 
     output.append("</table>\n");
 

@@ -57,6 +57,11 @@ class Strlib
      */
     static std::string sizeToString(size_t sz);
 
+    /**
+     * Convert a time_t to a string 
+     */
+    static std::string timeToString(time_t tm);
+
 }; // class Strlib
 
 } // namespace uv
