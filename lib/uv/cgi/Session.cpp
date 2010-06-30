@@ -19,7 +19,7 @@
 
 #include "cgi/Session.h"
 #include "cgi/Environment.h"
-#include "hashlibpp/src/hl_md5wrapper.h"
+#include "hashlibpp/hl_md5wrapper.h"
 
 /**
  *  
