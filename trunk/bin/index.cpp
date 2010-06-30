@@ -22,7 +22,6 @@
 #include "cgi/Info.h"
 #include "cgi/Cookie.h"
 #include "cgi/CookieJar.h"
-#include "core/Random.h"
 #include "view/InternalChrome.h"
 
 /**
@@ -34,8 +33,6 @@ int main()
     
     Environment env;
     uv::Headers headers;
-
-    srand(time(NULL));
 
     headers.set("Content-type: text/html");
     headers.set("X-Powered-By: Ultraviolet/0.8");

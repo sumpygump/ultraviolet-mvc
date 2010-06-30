@@ -19,22 +19,23 @@
 
 #include "Random.h"
 
-/**
- *  
- */
-uv::Random::Random()
-{
-    isSeeded = false;
-}
+bool uv::Random::isSeeded = false;
 
 /**
  *  
  */
-uv::Random::Random(int seed)
+/*uv::Random::Random()
 {
-    isSeeded = false;
+    setSeed();
+}*/
+
+/**
+ *  
+ */
+/*uv::Random::Random(int seed)
+{
     setSeed(seed);
-}
+}*/
 
 /**
  *  
@@ -49,7 +50,7 @@ void uv::Random::setSeed()
 {
     time_t timeSeed = time(NULL);
     
-    this->setSeed(timeSeed);
+    setSeed(timeSeed);
 }
 
 /**
@@ -57,6 +58,9 @@ void uv::Random::setSeed()
  */
 std::string uv::Random::generateString(int length)
 {
+    if (!isSeeded) {
+        setSeed();
+    }
     static std::string charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
     std::string result;
     result.resize(length);
