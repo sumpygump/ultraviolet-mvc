@@ -101,3 +101,15 @@ std::string uv::Strlib::sizeToString(size_t sz)
  
     return ss.str();
 }
+
+/**
+ *  
+ */
+std::string uv::Strlib::timeToString(time_t tm)
+{
+    std::stringstream ss;
+
+    ss << tm;
+
+    return ss.str();
+}

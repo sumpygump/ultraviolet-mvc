@@ -3,13 +3,15 @@ DEBUG_FLAG = -g
 EXEC       = ${CXX} ${DEBUG_FLAG}
 RM         = rm -f
 
-UV_PATH = ../lib/uv
+UV_PATH  = ../lib/uv
+LIB_PATH = ../lib
 
 CGI_PATH  = ${UV_PATH}/cgi
 CORE_PATH = ${UV_PATH}/core
 VIEW_PATH = ${UV_PATH}/view
+HASHLIB_PATH = ${LIB_PATH}/hashlibpp/src
 
-VPATH     = ${CGI_PATH}:${CORE_PATH}:${VIEW_PATH}
+VPATH     = ${CGI_PATH}:${CORE_PATH}:${VIEW_PATH}:${HASHLIB_PATH}:${LIB_PATH}
 
 WEB_PATH  = ../web
 
@@ -17,16 +19,18 @@ PROGRAM     = index.cgi
 INCLUDE_PATH = -I${UV_PATH}
 
 APP_OBJECTS  = index.o
-CGI_OBJECTS  = Input.o Environment.o Cookie.o CookieJar.o Url.o Request.o Post.o Headers.o File.o Info.o
+CGI_OBJECTS  = Input.o Environment.o Cookie.o CookieJar.o Url.o Request.o Post.o Headers.o File.o Info.o Session.o
 CORE_OBJECTS = Random.o Strlib.o
 VIEW_OBJECTS = InternalChrome.o
 MVC_OBJECTS  = 
 
+HASHLIB_OBJECTS = hl_md5.o hl_md5wrapper.o
+
 application : index
 	cp index.cgi ../web/index.cgi
 
-index : ${APP_OBJECTS} ${CGI_OBJECTS} ${CORE_OBJECTS} ${VIEW_OBJECTS}
-	${EXEC} -o ${PROGRAM} ${APP_OBJECTS} ${CGI_OBJECTS} ${CORE_OBJECTS} ${VIEW_OBJECTS}
+index : ${APP_OBJECTS} ${CGI_OBJECTS} ${CORE_OBJECTS} ${VIEW_OBJECTS} hashlib
+	${EXEC} -o ${PROGRAM} ${APP_OBJECTS} ${CGI_OBJECTS} ${CORE_OBJECTS} ${VIEW_OBJECTS} ${HASHLIB_OBJECTS}
 
 all : clean index
 
@@ -71,6 +75,9 @@ Environment.o : Environment.cpp Environment.h
 Info.o : Info.cpp Info.h
 	${EXEC} ${INCLUDE_PATH} -c ${CGI_PATH}/Info.cpp
 
+Session.o : Session.cpp Session.h
+	${EXEC} ${INCLUDE_PATH} -I${LIB_PATH} -c ${CGI_PATH}/Session.cpp
+
 Random.o : Random.cpp Random.h
 	${EXEC} ${INCLUDE_PATH} -c ${CORE_PATH}/Random.cpp
 
@@ -96,3 +103,12 @@ clean-web:
 	${RM} ${WEB_PATH}/${PROGRAM}
 
 clean: clean-app clean-cgi clean-web clean-core
+
+hashlib : ${HASHLIB_OBJECTS}
+
+hl_md5.o: hl_md5.cpp hl_md5.h
+	$(EXEC) -c ${HASHLIB_PATH}/hl_md5.cpp
+
+hl_md5wrapper.o: hl_md5wrapper.cpp hl_md5wrapper.h
+	$(EXEC) -c ${HASHLIB_PATH}/hl_md5wrapper.cpp
+

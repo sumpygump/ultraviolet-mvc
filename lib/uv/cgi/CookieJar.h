@@ -55,7 +55,12 @@ class CookieJar
     int addCookie(Cookie * cookie);
 
     /**
-     *  
+     * Retrieve a cookie by name
+     */
+    Cookie* retrieve(std::string name);
+
+    /**
+     * List cookies in jar
      */
     std::string list();
 
