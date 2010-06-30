@@ -19,7 +19,7 @@
 #include <iostream>
 
 #include "CookieJar.h"
-#include "Strlib.h"
+#include "core/Strlib.h"
 
 /**
  *  

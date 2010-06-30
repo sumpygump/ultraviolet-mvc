@@ -17,7 +17,7 @@
 
 #include "Request.h"
 #include "Url.h"
-#include "Strlib.h"
+#include "core/Strlib.h"
 
 /**
  * Parse the input and store the vars
