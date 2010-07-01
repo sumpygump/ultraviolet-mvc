@@ -16,11 +16,15 @@
 #ifndef UV_SESSION_H_
 #define UV_SESSION_H_
 
+#include "cgi/Request.h"
+
 /**
  * Ultraviolet Namespace
  */
 namespace uv
 {
+
+class SessionFileStorage;
 
 /**
  * Session
@@ -28,7 +32,7 @@ namespace uv
  * @author Jansen Price <jansen.price@gmail.com>
  * @version $Id$
  */
-class Session
+class Session : public Request
 {       
   public:
 
@@ -38,9 +42,58 @@ class Session
     Session();
 
     /**
+     * Constructor - with session id
+     *
+     * @param sessionId The session id
+     */
+    Session(std::string sessionId);
+
+    /**
      * Create the session id
      */
     std::string createId();
+
+    /**
+     * Retrieve the session id
+     */
+    std::string getId();
+
+    /**
+     * Set param (supports storing strings)
+     */
+    void setParam(std::string name, std::string value);
+
+    /**
+     * Set session id
+     */
+    void setId(std::string sessionId);
+
+    /**
+     * Load data via session storage
+     */
+    void load();
+
+    /**
+     * Save this session
+     */
+    void save();
+
+  protected:
+
+    /**
+     * Session id
+     */
+    std::string sessionId;
+
+    /**
+     * Storage for the session storage object
+     */
+    uv::SessionFileStorage* storage;
+
+    /**
+     * Initialize the storage object
+     */
+    void initStorage();
 };
 
 } // namespace uv

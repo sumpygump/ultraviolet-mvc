@@ -16,16 +16,51 @@
 #include <string>
 #include <sstream>
 #include <ctime>
+#include <iostream>
 
 #include "cgi/Session.h"
 #include "cgi/Environment.h"
+#include "cgi/SessionFileStorage.h"
 #include "hashlibpp/hl_md5wrapper.h"
 
 /**
  *  
  */
-uv::Session::Session ()
+uv::Session::Session()
 {
+    this->sessionId = "";
+}
+
+/**
+ *  
+ */
+uv::Session::Session(std::string sessionId)
+{
+    this->setId(sessionId);
+    this->load();
+}
+
+/**
+ *  
+ */
+void uv::Session::load()
+{
+    // load data from storage
+    this->initStorage();
+
+    std::string sessdata = this->storage->load(this->sessionId);
+
+    this->parseInput(sessdata);
+}
+
+/**
+ *  
+ */
+void uv::Session::setId(std::string sessionId)
+{
+    this->sessionId = sessionId;
+
+    // validate sessionid?
 }
 
 /**
@@ -45,10 +80,43 @@ std::string uv::Session::createId()
         << env->get(Environment::kServerName)
         << seconds;
     
-    std::string md5 = h->getHashFromString(ss.str());
+    this->sessionId = h->getHashFromString(ss.str());
 
     delete h;
     delete env;
 
-    return md5;
+    return this->sessionId;
+}
+
+/**
+ *  
+ */
+std::string uv::Session::getId()
+{
+    return this->sessionId;
+}
+
+/**
+ *  
+ */
+void uv::Session::setParam(std::string name, std::string value)
+{
+    this->vars[name] = value;
+}
+
+/**
+ *  
+ */
+void uv::Session::save()
+{
+    this->initStorage();
+    this->storage->save(this->sessionId, std::string("flower=Germanium"));
+}
+
+/**
+ *  
+ */
+void uv::Session::initStorage()
+{
+    this->storage = new SessionFileStorage();
 }
