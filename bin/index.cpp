@@ -37,7 +37,7 @@
 #include "view/InternalChrome.h"
 
 /**
- *  
+ * This is example code for illustrating and testing features of the application 
  */
 int main()
 {
@@ -61,11 +61,20 @@ int main()
     //std::cout << headers << "uv::cgi started.<br />";
 
     // Set up session
-    uv::Cookie* sessionCookie = cookieJar.retrieve("UVSESSID");
-    if (sessionCookie->getName() == "") {
-        uv::Session *s = new uv::Session();
-        std::string sessionId = s->createId();
-        headers.set("Set-Cookie: UVSESSID=" + sessionId);
+    uv::Session* session = new uv::Session();
+    if (env["UV_AUTO_SESSION"] == "on") {
+        uv::Cookie* sessionCookie = cookieJar.retrieve("UVSESSID");
+        if (sessionCookie->getName() == "") {
+            //uv::Session * session = new uv::Session();
+            std::string sessionId = session->createId();
+            headers.set("Set-Cookie: UVSESSID=" + sessionId);
+            session->setParam("gravy", "thick");
+            session->save();
+        } else {
+            //uv::Session * session = new uv::Session(sessionCookie->getValue());
+            session->setId(sessionCookie->getValue());
+            session->load();
+        }
     }
 
     // Set up GET
@@ -123,6 +132,7 @@ int main()
         << "<strong>GET vars</strong><pre>" << get.list() << "</pre>"
         << "<strong>POST vars</strong><pre>" << post.list() << "</pre>"
         << "<strong>Cookies</strong><pre>" << cookieJar.list() << "</pre>"
+        << "<strong>Session</strong><pre>" << session->list() << "</pre>"
         << "<strong>FILES vars</strong><pre>";
 
     std::string filedump = "";
