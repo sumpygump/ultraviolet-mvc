@@ -7,6 +7,17 @@
  * @version $Id$
  */
 
+/**
+ * @mainpage Ultraviolet C++ MVC Framework
+ * 
+ * @section intro Introduction
+ * Greetings fellow hyper-traveler! This is a web framework in C++.
+ * Right now it is in its infancy. Currently the CGI system and other core
+ * features are in development.
+ *  
+ */
+
+
 #include <iostream>
 #include <string>
 #include <cstdlib>
