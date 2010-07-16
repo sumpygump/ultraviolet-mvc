@@ -16,7 +16,7 @@
 #ifndef UV_POST_H_
 #define UV_POST_H_
 
-#include "Request.h"
+#include "Params.h"
 #include "File.h"
 
 /**
@@ -32,7 +32,7 @@ namespace uv
  * @author Jansen Price <jansen.price@gmail.com>
  * @version $Id$
  */
-class Post : public Request
+class Post : public Params
 {
   public:
     /**
@@ -81,4 +81,4 @@ class Post : public Request
 
 } // namespace uv
 
-#endif
+#endif // UV_POST_H

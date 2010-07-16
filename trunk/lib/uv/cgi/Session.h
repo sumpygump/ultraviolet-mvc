@@ -16,7 +16,7 @@
 #ifndef UV_SESSION_H_
 #define UV_SESSION_H_
 
-#include "cgi/Request.h"
+#include "cgi/Params.h"
 
 /**
  * Ultraviolet Namespace
@@ -32,7 +32,7 @@ class SessionFileStorage;
  * @author Jansen Price <jansen.price@gmail.com>
  * @version $Id$
  */
-class Session : public Request
+class Session : public Params
 {       
   public:
 
@@ -40,6 +40,11 @@ class Session : public Request
      * Default constructor
      */
     Session();
+
+    /**
+     * Destructor
+     */
+    ~Session();
 
     /**
      * Constructor - with session id

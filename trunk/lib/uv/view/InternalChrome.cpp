@@ -44,6 +44,7 @@ std::string uv::InternalChrome::wrapContent(std::string content)
         << "<head>"
         << "<title>" << title << "</title>" << std::endl
         << getStyles()
+        << "<script type=\"text/javascript\" src=\"http://code.jquery.com/jquery-1.4.2.min.js\"></script>" << std::endl
         << "</head>" << std::endl
         << "<body>" << std::endl
         << "<div id=\"contain\">" << std::endl

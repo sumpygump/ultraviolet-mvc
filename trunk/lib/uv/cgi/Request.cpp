@@ -16,78 +16,44 @@
 #include <iostream>
 
 #include "Request.h"
-#include "Url.h"
-#include "core/Strlib.h"
+//#include "Url.h"
+//#include "core/Strlib.h"
 
 /**
- * Parse the input and store the vars
+ *
  */
-void uv::Request::parseInput(std::string value)
+uv::Request::Request()
 {
-    if (value == "") {
-        return;
-    }
+    // Read cookies
+    this->cookies.readCookies(env[Environment::kHttpCookie]);
 
-    std::vector<std::string> pairs = Strlib::explode("&", value);
-    std::vector<std::string> parts;
+    // Set up GET params
+    this->get.parseInput(env[Environment::kQueryString]);
 
-    int pairslen = pairs.size();
-    int i;
-
-    for (i = 0; i < pairslen; i++) {
-        parts = Strlib::explode("=", pairs[i]);
-        if (parts.size() > 1 && parts[1] != "") {
-            vars[parts[0]] = Url::decode(parts[1]);
-        }
+    // Set up POST
+    if (this->env.get(Environment::kRequestMethod) == "POST") {
+        initPost();
     }
 }
 
 /**
  *  
  */
-bool uv::Request::keyExists(std::string key)
+void uv::Request::initPost()
 {
-    if (vars.find(key) != vars.end()) {
-        return true;
-    }
-    return false;
+    this->readRawInput();
+
+    this->post.parseInput(this->rawInput, this->env.get(Environment::kContentType));
 }
 
 /**
  *  
  */
-std::string uv::Request::getParam(std::string key)
+void uv::Request::readRawInput()
 {
-    if (!keyExists(key)) {
-        return "";
-    }
-    return vars[key];
-}
+    uv::Input input;
+    std::vector<char> data(this->env.getContentLength());
 
-/**
- *  
- */
-std::string uv::Request::operator[](const std::string name)
-{
-    return this->getParam(name);
-}
-
-/**
- *  
- */
-std::string uv::Request::list()
-{
-    if (vars.empty()) {
-        return "Empty.";
-    }
-
-    int i;
-    std::string out;
-
-    std::map<std::string, std::string>::iterator curr, end;
-    for (curr = vars.begin(), end = vars.end(); curr != end; curr++) {
-       out.append(" [" + curr->first + "] => " + curr->second + "\n");
-    }
-
-    return out;
+    input.read(&data[0], this->env.getContentLength());
+    this->rawInput = std::string(&data[0], this->env.getContentLength());
 }

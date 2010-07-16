@@ -12,7 +12,7 @@
  *
  * Handles a form post via HTTP POST request.
  *
- * @see uv::Request
+ * @see uv::Params
  */
 
 #include <iterator>
@@ -66,7 +66,7 @@ void uv::Post::parseInput(std::string input, std::string contentType)
             parseFormField(input.substr(oldPos, pos - oldPos));
         }
     } else {
-        Request::parseInput(input);
+        Params::parseInput(input);
     }
 }
 

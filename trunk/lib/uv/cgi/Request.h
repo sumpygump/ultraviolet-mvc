@@ -16,9 +16,15 @@
 #ifndef UV_REQUEST_H_
 #define UV_REQUEST_H_
 
-#include <string>
-#include <vector>
-#include <map>
+//#include <string>
+//#include <vector>
+//#include <map>
+
+#include "cgi/Environment.h"
+#include "cgi/CookieJar.h"
+#include "cgi/Params.h"
+#include "cgi/Post.h"
+#include "cgi/Input.h"
 
 /**
  * Ultraviolet Namespace
@@ -37,38 +43,49 @@ class Request
 {
   public:
     /**
-     * Parse the input and store the vars
+     * Default constructor
      */
-    void parseInput(std::string value);
+    Request();
 
     /**
-     * Return whether a key exists in this object's vars
+     * Environment object
      */
-    bool keyExists(std::string key);
+    uv::Environment env;
 
     /**
-     * Return the value for a param, if it exists
+     * CookieJar object
      */
-    std::string getParam(std::string key);
+    uv::CookieJar cookies;
 
     /**
-     * Operator [] to retrieve params
+     * Get params object
      */
-    std::string operator[](const std::string name);
+    uv::Params get;
 
     /**
-     * Generate a list of the vars stored in this object
+     * Post params object
      */
-    std::string list();
-    
+    uv::Post post;
+
+    /**
+     * Raw input from std in
+     */
+    std::string rawInput;
+
   protected:
-      /**
-       * Storage for the request vars 
-       */
-      std::map<std::string, std::string> vars;
+
+    /**
+     * Initialize post params
+     */
+    void initPost();
+
+    /**
+     * Read rawinput from stdin
+     */
+    void readRawInput();
 
 }; // class Request
 
 } // uv namespace
 
-#endif // UV_REQUEST
+#endif // UV_REQUEST_H

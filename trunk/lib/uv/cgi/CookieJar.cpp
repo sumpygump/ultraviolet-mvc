@@ -17,6 +17,7 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 
 #include "CookieJar.h"
 #include "Cookie.h"
@@ -27,6 +28,22 @@
  */
 uv::CookieJar::CookieJar()
 {
+}
+
+/**
+ *  
+ */
+uv::CookieJar::~CookieJar()
+{
+    std::vector<Cookie*>::const_iterator cookieIterator;
+    std::vector<Cookie*>::const_iterator cookieBegin = cookies.begin();
+    std::vector<Cookie*>::const_iterator cookieEnd = cookies.end();
+
+    for (cookieIterator = cookieBegin; cookieIterator < cookieEnd; cookieIterator++) {
+        //TODO(Jansen): Fix this
+        //delete *cookieIterator; // not sure if this is right
+        //cookies.erase(cookieIterator); // this throws a compilation error
+    }
 }
 
 /**

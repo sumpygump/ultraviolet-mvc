@@ -38,8 +38,19 @@ class SessionFileStorage
      */
     SessionFileStorage();
 
+    /**
+     * Load
+     */
     std::string load(std::string sessionId);
+
+    /**
+     * Save
+     */
     bool save(std::string sessionId, std::string data);
+
+    /**
+     * Set the path
+     */
     void setPath(std::string path);
 
   protected:
