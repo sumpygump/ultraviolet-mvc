@@ -45,6 +45,11 @@ class CookieJar
     CookieJar();
 
     /**
+     * Destructor
+     */
+    ~CookieJar();
+
+    /**
      * Parse the cookie header and set cookies
      */
     void readCookies(std::string cookieString);

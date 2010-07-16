@@ -34,6 +34,14 @@ uv::Session::Session()
 /**
  *  
  */
+uv::Session::~Session()
+{
+    delete this->storage;
+}
+
+/**
+ *  
+ */
 uv::Session::Session(std::string sessionId)
 {
     this->setId(sessionId);
