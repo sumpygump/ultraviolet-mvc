@@ -23,11 +23,11 @@
 #include <sstream>
 
 #include "cgi/Environment.h"
-#include "cgi/Headers.h"
 #include "cgi/Info.h"
 #include "cgi/Cookie.h"
 #include "cgi/Session.h"
 #include "cgi/Request.h"
+#include "cgi/Response.h"
 #include "view/InternalChrome.h"
 
 /**
@@ -39,17 +39,17 @@ int main()
     typedef uv::Environment Environment;
 
     uv::Request request;
+    uv::Response response;
 
     // Prepare headers
-    uv::Headers headers;
-    headers.set("Content-type: text/html");
-    headers.set("X-Powered-By: Ultraviolet/0.8");
-    headers.set("Set-Cookie: testcookie1=\"true\"; max-age=1024; comment=cookies have comments");
-    headers.set("Set-Cookie: id=2454; max-age=1024; version=1");
-    headers.set("Set-Cookie: userid=154844746557324485445; max-age=1024; version=1");
-    headers.set("Set-Cookie: deleteme=; max-age=0"); // to delete a cookie, set max-age=0
+    response.headers.set("Content-type: text/html");
+    response.headers.set("X-Powered-By: Ultraviolet/0.8");
+    response.headers.set("Set-Cookie: testcookie1=\"true\"; max-age=1024; comment=cookies have comments");
+    response.headers.set("Set-Cookie: id=2454; max-age=1024; version=1");
+    response.headers.set("Set-Cookie: userid=154844746557324485445; max-age=1024; version=1");
+    response.headers.set("Set-Cookie: deleteme=; max-age=0"); // to delete a cookie, set max-age=0
 
-    //std::cout << headers << "uv::cgi started.<br />";
+    //std::cout << response.headers << "uv::cgi started.<br />";
 
     // Set up session
     uv::Session* session = new uv::Session();
@@ -58,7 +58,7 @@ int main()
         if (sessionCookie->getName() == "") {
             //uv::Session * session = new uv::Session();
             std::string sessionId = session->createId();
-            headers.set("Set-Cookie: UVSESSID=" + sessionId);
+            response.headers.set("Set-Cookie: UVSESSID=" + sessionId);
             session->setParam("gravy", "thick");
             session->save();
         } else {
@@ -93,7 +93,7 @@ int main()
                 << "</form>" << std::endl
                 << "<p>Use the querystring <a href=\"?test=post&amp;display-stdin=true\">?display-stdin=true</a> to display stdin data (for troubleshooting)</a></p>";
         } else if (request.get["test"] == "404") {
-            headers.set("Status: 404"); // example of 404 status
+            response.headers.set("Status: 404"); // example of 404 status
             ic.setTitle("Error 404");
             oss << "<h1 class=\"error\">404 Not Found</h1>"
                 << "<p class=\"error-message\">The file could not be found.</p>";
@@ -125,7 +125,7 @@ int main()
     }
 
     // Begin output (send headers)
-    std::cout << headers << std::endl;
+    std::cout << response.headers << std::endl;
     std::cout << ic.wrapContent(oss.str());
 
     delete session;

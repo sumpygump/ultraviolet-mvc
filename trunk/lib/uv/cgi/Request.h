@@ -16,10 +16,6 @@
 #ifndef UV_REQUEST_H_
 #define UV_REQUEST_H_
 
-//#include <string>
-//#include <vector>
-//#include <map>
-
 #include "cgi/Environment.h"
 #include "cgi/CookieJar.h"
 #include "cgi/Params.h"
@@ -53,7 +49,7 @@ class Request
     uv::Environment env;
 
     /**
-     * CookieJar object
+     * CookieJar object for incoming cookies
      */
     uv::CookieJar cookies;
 

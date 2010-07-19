@@ -19,7 +19,7 @@ PROGRAM     = index.cgi
 INCLUDE_PATH = -I${UV_PATH}
 
 APP_OBJECTS  = index.o
-CGI_OBJECTS  = Input.o Environment.o Cookie.o CookieJar.o Url.o Params.o Post.o Headers.o File.o Info.o Session.o SessionFileStorage.o Request.o
+CGI_OBJECTS  = Input.o Environment.o Cookie.o CookieJar.o Url.o Params.o Post.o Headers.o File.o Info.o Session.o SessionFileStorage.o Request.o Response.o
 CORE_OBJECTS = Random.o Strlib.o
 VIEW_OBJECTS = InternalChrome.o
 MVC_OBJECTS  = 
@@ -83,6 +83,9 @@ SessionFileStorage.o : SessionFileStorage.cpp SessionFileStorage.h
 
 Request.o : Request.cpp Request.h
 	${EXEC} ${INCLUDE_PATH} -c ${CGI_PATH}/Request.cpp
+
+Response.o : Response.cpp Response.h
+	${EXEC} ${INCLUDE_PATH} -c ${CGI_PATH}/Response.cpp
 
 Random.o : Random.cpp Random.h
 	${EXEC} ${INCLUDE_PATH} -c ${CORE_PATH}/Random.cpp
