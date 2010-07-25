@@ -40,9 +40,7 @@ uv::CookieJar::~CookieJar()
     std::vector<Cookie*>::const_iterator cookieEnd = cookies.end();
 
     for (cookieIterator = cookieBegin; cookieIterator < cookieEnd; cookieIterator++) {
-        //TODO(Jansen): Fix this
-        //delete *cookieIterator; // not sure if this is right
-        //cookies.erase(cookieIterator); // this throws a compilation error
+        delete *cookieIterator;
     }
 }
 
@@ -124,8 +122,8 @@ uv::Cookie* uv::CookieJar::retrieve(std::string name)
         }
     }
 
-    // Return pointer to new blank cookie
-    return new Cookie();
+    // Return null when there's no cookie available
+    return NULL;
 }
 
 /**

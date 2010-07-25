@@ -20,8 +20,8 @@ INCLUDE_PATH = -I${UV_PATH}
 
 APP_OBJECTS  = index.o
 CGI_OBJECTS  = Input.o Environment.o Cookie.o CookieJar.o Url.o Params.o Post.o Headers.o File.o Info.o Session.o SessionFileStorage.o Request.o Response.o
-CORE_OBJECTS = Random.o Strlib.o
-VIEW_OBJECTS = InternalChrome.o
+CORE_OBJECTS = Random.o Strlib.o Ini.o
+VIEW_OBJECTS = InternalChrome.o ViewParser.o
 MVC_OBJECTS  = 
 
 HASHLIB_OBJECTS = hl_md5.o hl_md5wrapper.o
@@ -32,7 +32,7 @@ application : index
 index : ${APP_OBJECTS} ${CGI_OBJECTS} ${CORE_OBJECTS} ${VIEW_OBJECTS} hashlib
 	${EXEC} -o ${PROGRAM} ${APP_OBJECTS} ${CGI_OBJECTS} ${CORE_OBJECTS} ${VIEW_OBJECTS} ${HASHLIB_OBJECTS}
 
-all : clean index
+all : clean application
 
 cgi : ${CGI_OBJECTS}
 
@@ -95,6 +95,9 @@ Strlib.o : Strlib.cpp Strlib.h
 
 InternalChrome.o : InternalChrome.cpp InternalChrome.h
 	${EXEC} ${INCLUDE_PATH} -c ${VIEW_PATH}/InternalChrome.cpp
+
+Ini.o : Ini.cpp Ini.h
+	${EXEC} ${INCLUDE_PATH} -c ${CORE_PATH}/Ini.cpp
 
 clean-app:
 	${RM} ${APP_OBJECTS} ${PROGRAM}

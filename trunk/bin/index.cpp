@@ -29,12 +29,17 @@
 #include "cgi/Request.h"
 #include "cgi/Response.h"
 #include "view/InternalChrome.h"
+#include "core/Ini.h"
 
 /**
  * This is example code for illustrating and testing features of the application 
  */
 int main()
 {
+    uv::Ini iniReader = uv::Ini("test.ini");
+    
+    return 0;
+
     // Environment is required to access constants
     typedef uv::Environment Environment;
 
@@ -52,17 +57,17 @@ int main()
     //std::cout << response.headers << "uv::cgi started.<br />";
 
     // Set up session
-    uv::Session* session = new uv::Session();
+    uv::Session* session = NULL;// = new uv::Session();
     if (request.env["UV_AUTO_SESSION"] == "on") {
         uv::Cookie* sessionCookie = request.cookies.retrieve("UVSESSID");
-        if (sessionCookie->getName() == "") {
-            //uv::Session * session = new uv::Session();
+        if (sessionCookie == NULL) {
+            session = new uv::Session();
             std::string sessionId = session->createId();
             response.headers.set("Set-Cookie: UVSESSID=" + sessionId);
             session->setParam("gravy", "thick");
             session->save();
         } else {
-            //uv::Session * session = new uv::Session(sessionCookie->getValue());
+            session = new uv::Session(sessionCookie->getValue());
             session->setId(sessionCookie->getValue());
             session->load();
         }
@@ -128,7 +133,9 @@ int main()
     std::cout << response.headers << std::endl;
     std::cout << ic.wrapContent(oss.str());
 
-    delete session;
+    if (session != NULL) {
+        delete session;
+    }
 
     return 0;
 }
