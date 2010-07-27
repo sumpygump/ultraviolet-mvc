@@ -37,14 +37,16 @@
 int main()
 {
     uv::Ini iniReader = uv::Ini("test.ini");
-    
-    return 0;
-
-    // Environment is required to access constants
-    typedef uv::Environment Environment;
+    //std::cout << iniReader.list();
 
     uv::Request request;
     uv::Response response;
+
+    if (request.env["TERM"] != "") {
+        std::cout << "Cannot run Ultraviolet from a terminal." << std::endl
+            << "Exiting." << std::endl;
+        return 1;
+    }
 
     // Prepare headers
     response.headers.set("Content-type: text/html");
