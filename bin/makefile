@@ -21,7 +21,7 @@ INCLUDE_PATH = -I${UV_PATH}
 APP_OBJECTS  = index.o
 CGI_OBJECTS  = Input.o Environment.o Cookie.o CookieJar.o Url.o Params.o Post.o Headers.o File.o Info.o Session.o SessionFileStorage.o Request.o Response.o
 CORE_OBJECTS = Random.o Strlib.o Ini.o
-VIEW_OBJECTS = InternalChrome.o ViewParser.o
+VIEW_OBJECTS = InternalChrome.o
 MVC_OBJECTS  = 
 
 HASHLIB_OBJECTS = hl_md5.o hl_md5wrapper.o

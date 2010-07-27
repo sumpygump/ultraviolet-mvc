@@ -25,7 +25,7 @@ namespace uv
 /**
  * Random provides functionality for generating random things
  * 
- * @author Jansen Price <jansen.price@sierra-bravo.com>
+ * @author Jansen Price <jansen.price@gmail.com>
  * @version $Id$
  */
 class Random
