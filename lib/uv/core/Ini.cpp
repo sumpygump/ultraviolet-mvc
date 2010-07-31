@@ -47,6 +47,10 @@ void uv::Ini::readFile()
             getline(iniStream, line);
             this->readLine(line);
         }
+    } else {
+        std::cerr << "Error: Cannot read ini file \""
+            << this->filename.c_str()
+            << "\"" << std::endl;
     }
 
     iniStream.close();
@@ -55,7 +59,7 @@ void uv::Ini::readFile()
 /**
  *  
  */
-std::map<std::string, std::string> uv::Ini::getPairs()
+std::map<std::string, uv::iniPairs> uv::Ini::getPairs()
 {
     return this->keyValuePairs;
 }
@@ -70,9 +74,13 @@ int uv::Ini::readLine(std::string line)
     bool foundKey = false;
     std::string key;
     std::string value = "";
-    std::string section;
+    std::string section = "default";
     std::string::size_type pos = 0;
     std::string::size_type charLen = std::string(" ").length();
+
+    if (this->currentSection.length() > 0) {
+        section = this->currentSection;
+    }
     
     for (i = 0; i < length; i++) {
         if (foundKey == true && key.length() > 0) {
@@ -98,7 +106,7 @@ int uv::Ini::readLine(std::string line)
                 value = value.substr(charLen, value.length() - charLen * 2);
             }
 
-            this->setPair(key, value);
+            this->setPair(key, value, section);
             return 0;
         }
 
@@ -113,7 +121,8 @@ int uv::Ini::readLine(std::string line)
             section = line.substr(i + charLen, pos - i - charLen);
             section = Strlib::trim(section);
 
-            // TODO(Jansen): add support for sections
+            // Store this section
+            this->currentSection = section;
 
             return 0;
         }
@@ -148,7 +157,7 @@ int uv::Ini::readLine(std::string line)
         // If the line ends in an equals sign,
         // be sure to add this key with a blank value
         if (pos == length - charLen) {
-            this->setPair(key, "");
+            this->setPair(key, "", section);
         }
     }
 }
@@ -156,11 +165,16 @@ int uv::Ini::readLine(std::string line)
 /**
  *  
  */
-void uv::Ini::setPair(std::string key, std::string value)
+void uv::Ini::setPair(std::string key, std::string value, std::string section)
 {
-    this->keyValuePairs[key] = value;
+    uv::iniPairs pair = this->keyValuePairs[section];
+    pair[key] = value;
+    this->keyValuePairs[section] = pair;
 }
 
+/**
+ *  
+ */
 std::string uv::Ini::list()
 {
     if (keyValuePairs.empty()) {
@@ -170,10 +184,35 @@ std::string uv::Ini::list()
     int i;
     std::string out;
 
-    std::map<std::string, std::string>::iterator curr, end;
+    // section iterator
+    std::map<std::string, uv::iniPairs>::iterator curr, end;
+
+    // iniPairs iterator
+    uv::iniPairs::iterator pcurr, pend;
+
     for (curr = keyValuePairs.begin(), end = keyValuePairs.end(); curr != end; curr++) {
-       out.append(" [" + curr->first + "] => " + curr->second + "\n");
+        out.append("SECTION [" + curr->first + "] =>\n");
+
+        for (pcurr = curr->second.begin(), pend = curr->second.end(); pcurr != pend; pcurr++) {
+            out.append(" [" + pcurr->first + "] => " + pcurr->second + "\n");
+        }
     }
 
     return out;
+}
+
+/**
+ *  
+ */
+std::string uv::Ini::get(std::string key, std::string section)
+{
+    return this->keyValuePairs[section][key];
+}
+
+/**
+ *  
+ */
+uv::iniPairs uv::Ini::getSection(std::string section)
+{
+    return this->keyValuePairs[section];
 }

@@ -26,6 +26,11 @@ namespace uv
 {
 
 /**
+ *  
+ */
+typedef std::map<std::string, std::string> iniPairs;
+
+/**
  * Read and parse an ini file
  * 
  * @author Jansen Price <jansen.price@gmail.com>
@@ -38,7 +43,12 @@ class Ini
     /**
      * Key-value pairs map
      */
-    std::map<std::string, std::string> keyValuePairs;
+    std::map<std::string, uv::iniPairs> keyValuePairs;
+
+    /**
+     * Storage for the current section (during parsing)
+     */
+    std::string currentSection;
     
     /**
      * Storage for filename of .ini file
@@ -60,10 +70,11 @@ class Ini
     /**
      * Set a pair
      *
-     * @param key The key
+     * @param key Key name
      * @param value A value
+     * @param section The name of the section
      */
-    void setPair(std::string key, std::string value);
+    void setPair(std::string key, std::string value, std::string section);
     
   public:
     /**
@@ -78,7 +89,22 @@ class Ini
      *
      * @param Retrieve all the pairs in this ini file
      */
-    std::map<std::string, std::string> getPairs();
+    std::map<std::string, iniPairs> getPairs();
+
+    /**
+     * Get a single value
+     *
+     * @param Key name
+     * @param Section name
+     */
+    std::string get(std::string key, std::string section);
+
+    /**
+     * Get a section
+     *
+     * @param Section name
+     */
+    uv::iniPairs getSection(std::string section);
 
     /**
      * List the key value pairs
