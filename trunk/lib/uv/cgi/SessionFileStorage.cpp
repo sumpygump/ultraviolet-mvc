@@ -76,4 +76,3 @@ void uv::SessionFileStorage::setPath(std::string path)
 {
     this->path = path;
 }
-

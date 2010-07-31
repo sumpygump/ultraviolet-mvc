@@ -37,7 +37,18 @@
 int main()
 {
     uv::Ini iniReader = uv::Ini("test.ini");
-    //std::cout << iniReader.list();
+
+    // List out the ini contents
+    std::cout << iniReader.list() << std::endl;
+
+    // Example of getting a value
+    std::string dbserver = iniReader.get("server", "database");
+    std::cout << "The database server config setting is " << dbserver << std::endl;
+
+    // Example of getting a section
+    std::map<std::string, std::string> section;
+    section = iniReader.getSection("database");
+    std::cout << section["server"] << std::endl;
 
     uv::Request request;
     uv::Response response;
