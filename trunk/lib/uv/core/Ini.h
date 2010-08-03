@@ -77,8 +77,14 @@ class Ini
     void setPair(std::string key, std::string value, std::string section);
     
   public:
+
     /**
      * Default constructor
+     */
+    Ini();
+
+    /**
+     * Constructor with filename
      *
      * @param filename Name of file (path)
      */

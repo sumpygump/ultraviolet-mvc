@@ -9,9 +9,10 @@ LIB_PATH = ../lib
 CGI_PATH  = ${UV_PATH}/cgi
 CORE_PATH = ${UV_PATH}/core
 VIEW_PATH = ${UV_PATH}/view
+MVC_PATH  = ${UV_PATH}/framework
 HASHLIB_PATH = ${LIB_PATH}/hashlibpp
 
-VPATH     = ${CGI_PATH}:${CORE_PATH}:${VIEW_PATH}:${HASHLIB_PATH}:${LIB_PATH}
+VPATH     = ${CGI_PATH}:${CORE_PATH}:${VIEW_PATH}:${HASHLIB_PATH}:${LIB_PATH}:${MVC_PATH}
 
 WEB_PATH  = ../web
 
@@ -22,15 +23,15 @@ APP_OBJECTS  = index.o
 CGI_OBJECTS  = Input.o Environment.o Cookie.o CookieJar.o Url.o Params.o Post.o Headers.o File.o Info.o Session.o SessionFileStorage.o Request.o Response.o
 CORE_OBJECTS = Random.o Strlib.o Ini.o
 VIEW_OBJECTS = InternalChrome.o
-MVC_OBJECTS  = 
+MVC_OBJECTS  = Config.o
 
 HASHLIB_OBJECTS = hl_md5.o hl_md5wrapper.o
 
 application : index
 	cp index.cgi ../web/index.cgi
 
-index : ${APP_OBJECTS} ${CGI_OBJECTS} ${CORE_OBJECTS} ${VIEW_OBJECTS} hashlib
-	${EXEC} -o ${PROGRAM} ${APP_OBJECTS} ${CGI_OBJECTS} ${CORE_OBJECTS} ${VIEW_OBJECTS} ${HASHLIB_OBJECTS}
+index : ${APP_OBJECTS} ${CGI_OBJECTS} ${CORE_OBJECTS} ${VIEW_OBJECTS} ${MVC_OBJECTS} hashlib
+	${EXEC} -o ${PROGRAM} ${APP_OBJECTS} ${CGI_OBJECTS} ${CORE_OBJECTS} ${VIEW_OBJECTS} ${MVC_OBJECTS} ${HASHLIB_OBJECTS}
 
 all : clean application
 
@@ -98,6 +99,9 @@ InternalChrome.o : InternalChrome.cpp InternalChrome.h
 
 Ini.o : Ini.cpp Ini.h
 	${EXEC} ${INCLUDE_PATH} -c ${CORE_PATH}/Ini.cpp
+
+Config.o : Config.cpp Config.h
+	${EXEC} ${INCLUDE_PATH} -c ${MVC_PATH}/Config.cpp
 
 clean-app:
 	${RM} ${APP_OBJECTS} ${PROGRAM}

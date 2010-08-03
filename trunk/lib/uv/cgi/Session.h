@@ -104,4 +104,3 @@ class Session : public Params
 } // namespace uv
 
 #endif // UV_SESSION_H_
-
