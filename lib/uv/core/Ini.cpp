@@ -34,6 +34,13 @@ uv::Ini::Ini(std::string filename)
 /**
  *  
  */
+uv::Ini::Ini()
+{
+}
+
+/**
+ *  
+ */
 void uv::Ini::readFile()
 {
     std::ifstream iniStream;

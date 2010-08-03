@@ -30,25 +30,18 @@
 #include "cgi/Response.h"
 #include "view/InternalChrome.h"
 #include "core/Ini.h"
+#include "framework/Config.h"
 
 /**
  * This is example code for illustrating and testing features of the application 
  */
 int main()
 {
-    uv::Ini iniReader = uv::Ini("test.ini");
-
-    // List out the ini contents
-    std::cout << iniReader.list() << std::endl;
-
-    // Example of getting a value
-    std::string dbserver = iniReader.get("server", "database");
-    std::cout << "The database server config setting is " << dbserver << std::endl;
-
-    // Example of getting a section
-    std::map<std::string, std::string> section;
-    section = iniReader.getSection("database");
-    std::cout << section["server"] << std::endl;
+    // Example of config
+    uv::Config config = uv::Config("test.ini");
+    //std::cout << config.list();
+    //std::string dbserver = config.get("server", "database");
+    //std::cout << "The database server config setting is " << dbserver << std::endl;
 
     uv::Request request;
     uv::Response response;
