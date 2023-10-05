@@ -33,8 +33,8 @@ class SessionFileStorage;
  * @version $Id$
  */
 class Session : public Params
-{       
-  public:
+{
+public:
 
     /**
      * Default constructor
@@ -83,7 +83,7 @@ class Session : public Params
      */
     void save();
 
-  protected:
+protected:
 
     /**
      * Session id

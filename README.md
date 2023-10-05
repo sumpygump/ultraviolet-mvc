@@ -32,7 +32,7 @@ Checkout the files and run the script `build`. This will create an index.cgi fil
 Note that the .htaccess file in the web directory should have the following directive:
 ```
 Options +ExecCGI
-AddHandler cgi-script cgi
+AddHandler cgi-script .cgi
 ```
 
 Currently this script in bin/index.cpp shows an example of how to set up the environment, set cookies, store sessions, etc. but doesn't really do a whole lot as far as the framework goes. Eventually we plan to have a router so that all the application code will be handled through index.cgi.

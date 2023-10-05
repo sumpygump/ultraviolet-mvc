@@ -22,24 +22,24 @@
 #include "core/Strlib.h"
 
 /**
- *  
+ *
  */
 uv::Ini::Ini(std::string filename)
 {
     this->filename = filename;
-    
+
     this->readFile();
 }
 
 /**
- *  
+ *
  */
 uv::Ini::Ini()
 {
 }
 
 /**
- *  
+ *
  */
 void uv::Ini::readFile()
 {
@@ -56,15 +56,15 @@ void uv::Ini::readFile()
         }
     } else {
         std::cerr << "Error: Cannot read ini file \""
-            << this->filename.c_str()
-            << "\"" << std::endl;
+                  << this->filename.c_str()
+                  << "\"" << std::endl;
     }
 
     iniStream.close();
 }
 
 /**
- *  
+ *
  */
 std::map<std::string, uv::iniPairs> uv::Ini::getPairs()
 {
@@ -72,7 +72,7 @@ std::map<std::string, uv::iniPairs> uv::Ini::getPairs()
 }
 
 /**
- *  
+ *
  */
 int uv::Ini::readLine(std::string line)
 {
@@ -88,7 +88,7 @@ int uv::Ini::readLine(std::string line)
     if (this->currentSection.length() > 0) {
         section = this->currentSection;
     }
-    
+
     for (i = 0; i < length; i++) {
         if (foundKey == true && key.length() > 0) {
             // Find the comment start (if any)
@@ -108,8 +108,8 @@ int uv::Ini::readLine(std::string line)
 
             // If the value is enclosed in quotes, remove the quotes
             if (value.substr(0, 1) == "\""
-                && value.substr(value.length() - charLen, 1) == "\""
-            ) {
+                    && value.substr(value.length() - charLen, 1) == "\""
+               ) {
                 value = value.substr(charLen, value.length() - charLen * 2);
             }
 
@@ -147,8 +147,8 @@ int uv::Ini::readLine(std::string line)
         // or this line starts with an equals sign
         // ignore this line
         if (std::string::npos == pos
-            || pos == i
-        ) {
+                || pos == i
+           ) {
             return 1;
         }
 
@@ -167,10 +167,12 @@ int uv::Ini::readLine(std::string line)
             this->setPair(key, "", section);
         }
     }
+
+    return 0;
 }
 
 /**
- *  
+ *
  */
 void uv::Ini::setPair(std::string key, std::string value, std::string section)
 {
@@ -180,7 +182,7 @@ void uv::Ini::setPair(std::string key, std::string value, std::string section)
 }
 
 /**
- *  
+ *
  */
 std::string uv::Ini::list()
 {
@@ -209,7 +211,7 @@ std::string uv::Ini::list()
 }
 
 /**
- *  
+ *
  */
 std::string uv::Ini::get(std::string key, std::string section)
 {
@@ -217,7 +219,7 @@ std::string uv::Ini::get(std::string key, std::string section)
 }
 
 /**
- *  
+ *
  */
 uv::iniPairs uv::Ini::getSection(std::string section)
 {

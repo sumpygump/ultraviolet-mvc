@@ -24,7 +24,7 @@
 #include "hashlibpp/hl_md5wrapper.h"
 
 /**
- *  
+ *
  */
 uv::Session::Session()
 {
@@ -32,7 +32,7 @@ uv::Session::Session()
 }
 
 /**
- *  
+ *
  */
 uv::Session::~Session()
 {
@@ -40,7 +40,7 @@ uv::Session::~Session()
 }
 
 /**
- *  
+ *
  */
 uv::Session::Session(std::string sessionId)
 {
@@ -49,7 +49,7 @@ uv::Session::Session(std::string sessionId)
 }
 
 /**
- *  
+ *
  */
 void uv::Session::load()
 {
@@ -62,7 +62,7 @@ void uv::Session::load()
 }
 
 /**
- *  
+ *
  */
 void uv::Session::setId(std::string sessionId)
 {
@@ -85,9 +85,9 @@ std::string uv::Session::createId()
     std::stringstream ss;
 
     ss << env->get(Environment::kRemoteAddr)
-        << env->get(Environment::kServerName)
-        << seconds;
-    
+       << env->get(Environment::kServerName)
+       << seconds;
+
     this->sessionId = h->getHashFromString(ss.str());
 
     delete h;
@@ -97,7 +97,7 @@ std::string uv::Session::createId()
 }
 
 /**
- *  
+ *
  */
 std::string uv::Session::getId()
 {
@@ -105,7 +105,7 @@ std::string uv::Session::getId()
 }
 
 /**
- *  
+ *
  */
 void uv::Session::setParam(std::string name, std::string value)
 {
@@ -113,7 +113,7 @@ void uv::Session::setParam(std::string name, std::string value)
 }
 
 /**
- *  
+ *
  */
 void uv::Session::save()
 {
@@ -122,7 +122,7 @@ void uv::Session::save()
 }
 
 /**
- *  
+ *
  */
 void uv::Session::initStorage()
 {

@@ -22,7 +22,7 @@
 #include "core/Strlib.h"
 
 /**
- * Parse input 
+ * Parse input
  */
 void uv::Post::parseInput(std::string input, std::string contentType)
 {
@@ -87,7 +87,7 @@ std::string uv::Post::getBoundary(std::string data)
 }
 
 /**
- *  
+ *
  */
 void uv::Post::parseFormField(std::string data)
 {
@@ -120,7 +120,7 @@ void uv::Post::parseFormField(std::string data)
 }
 
 /**
- *  
+ *
  */
 std::map<std::string, std::string> uv::Post::parseMultipartHeader(std::string data)
 {
@@ -171,8 +171,8 @@ std::map<std::string, std::string> uv::Post::parseMultipartHeader(std::string da
 }
 
 /**
- *  
+ *
  */
-void uv::Post::parseInput(std::ios stream)
+void uv::Post::parseInput(std::ios &stream)
 {
 }

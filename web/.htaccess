@@ -1,5 +1,5 @@
 Options +ExecCGI
-AddHandler cgi-script cgi
+AddHandler cgi-script .cgi
 
 SetEnv UV_AUTO_SESSION on
 

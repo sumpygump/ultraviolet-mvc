@@ -34,7 +34,7 @@ namespace uv
  */
 class Post : public Params
 {
-  public:
+public:
     /**
      * Parse input and populate vars
      *
@@ -45,7 +45,7 @@ class Post : public Params
      *
      * The contentType is important to determine whether to use
      * multipart/form-data format or regular querystring format
-     * 
+     *
      * @param input The input string
      * @param contentType The content type of the http request
      */
@@ -56,7 +56,7 @@ class Post : public Params
      *
      * This is not yet implemented
      */
-    void parseInput(std::ios stream);
+    void parseInput(std::ios &stream);
 
     /**
      * Get the boundary from a header string
