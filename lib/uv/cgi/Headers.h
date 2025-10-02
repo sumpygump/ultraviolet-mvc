@@ -16,6 +16,7 @@
 #ifndef UV_HEADERS_H_
 #define UV_HEADERS_H_
 
+#include <string>
 #include <vector>
 
 /**

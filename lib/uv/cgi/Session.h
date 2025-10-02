@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Session.h
@@ -16,7 +14,7 @@
 #ifndef UV_SESSION_H_
 #define UV_SESSION_H_
 
-#include "cgi/Params.h"
+#include "Params.h"
 
 /**
  * Ultraviolet Namespace
@@ -49,9 +47,9 @@ public:
     /**
      * Constructor - with session id
      *
-     * @param sessionId The session id
+     * @param setSessionId The session id
      */
-    Session(std::string sessionId);
+    explicit Session(const std::string &setSessionId);
 
     /**
      * Create the session id
@@ -66,12 +64,12 @@ public:
     /**
      * Set param (supports storing strings)
      */
-    void setParam(std::string name, std::string value);
+    void setParam(const std::string &name, std::string value);
 
     /**
      * Set session id
      */
-    void setId(std::string sessionId);
+    void setId(const std::string &setSessionId);
 
     /**
      * Load data via session storage

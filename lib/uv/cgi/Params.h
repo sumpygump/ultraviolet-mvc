@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Params.h
@@ -17,7 +15,6 @@
 #define UV_PARAMS_H_
 
 #include <string>
-#include <vector>
 #include <map>
 
 /**
@@ -39,22 +36,22 @@ class Params
     /**
      * Parse the input and store the vars
      */
-    void parseInput(std::string value);
+    void parseInput(const std::string &value);
 
     /**
      * Return whether a key exists in this object's vars
      */
-    bool keyExists(std::string key);
+    bool keyExists(const std::string &key);
 
     /**
      * Return the value for a param, if it exists
      */
-    std::string getParam(std::string key);
+    std::string getParam(const std::string &key);
 
     /**
      * Operator [] to retrieve params
      */
-    std::string operator[](const std::string name);
+    std::string operator[](const std::string &name);
 
     /**
      * Generate a list of the vars stored in this object
@@ -71,4 +68,4 @@ class Params
 
 } // uv namespace
 
-#endif // UV_PARAMS_H
+#endif // UV_PARAMS_H_

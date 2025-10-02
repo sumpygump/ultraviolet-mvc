@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file SessionFileStorage.h
@@ -41,17 +39,17 @@ class SessionFileStorage
     /**
      * Load
      */
-    std::string load(std::string sessionId);
+    std::string load(const std::string& sessionId);
 
     /**
      * Save
      */
-    bool save(std::string sessionId, std::string data);
+    bool save(const std::string& sessionId, const std::string &data);
 
     /**
      * Set the path
      */
-    void setPath(std::string path);
+    void setPath(const std::string &pathInput);
 
   protected:
 

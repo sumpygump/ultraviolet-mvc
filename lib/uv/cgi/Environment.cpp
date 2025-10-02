@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Environment.cpp
@@ -46,6 +44,7 @@ const std::string uv::Environment::kServerSoftware = "SERVER_SOFTWARE";
  */
 uv::Environment::Environment()
 {
+    contentLength = 0;
     init();
 }
 
@@ -60,11 +59,10 @@ void uv::Environment::init()
     );
 }
 
-
 /**
  *  
  */
-std::string uv::Environment::get(const std::string name)
+std::string uv::Environment::get(const std::string &name)
 {
     return input.getenv(name.c_str());
 }
@@ -72,7 +70,7 @@ std::string uv::Environment::get(const std::string name)
 /**
  *  
  */
-std::string uv::Environment::operator[](const std::string name)
+std::string uv::Environment::operator[](const std::string &name)
 {
     return this->get(name);
 }
@@ -80,7 +78,7 @@ std::string uv::Environment::operator[](const std::string name)
 /**
  *  
  */
-unsigned long uv::Environment::getContentLength()
+size_t uv::Environment::getContentLength() const
 {
     return contentLength;
 }

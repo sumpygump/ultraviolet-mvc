@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Config.cpp
@@ -17,13 +15,12 @@
 #include <iostream>
 
 #include "Config.h"
-#include "core/Strlib.h"
-#include "core/Ini.h"
+#include "../core/Ini.h"
 
 /**
  *  
  */
-uv::Config::Config(std::string filename)
+uv::Config::Config(const std::string &filename)
 {
     this->source = uv::Ini(filename);
 }

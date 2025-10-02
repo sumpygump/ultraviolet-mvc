@@ -1,14 +1,39 @@
 #!/bin/bash
 ERRLOG=../build.err.log
 
+setup_terminal() {
+    TPUT_RESET=""
+    TPUT_RED=""
+    TPUT_GREEN=""
+    TPUT_BLUE=""
+    # Is stderr on the terminal? If not, then fail
+    test -t 2 || return 1
+    if command -v tput >/dev/null 2>&1; then
+        if [ $(($(tput colors 2>/dev/null))) -ge 8 ]; then
+            # Enable colors
+            TPUT_RESET="$(tput sgr 0)"
+            TPUT_RED="$(tput setaf 1)"
+            TPUT_GREEN="$(tput setaf 2)"
+            TPUT_BLUE="$(tput setaf 4)"
+        fi
+    fi
+    return 0
+}
+success() {
+    printf >&2 "${TPUT_GREEN}%s${TPUT_RESET}\n" "$*"
+}
+error() {
+    printf >&2 "${TPUT_RED}%s${TPUT_RESET}\n" "$*"
+}
+
+setup_terminal || echo >/dev/null
+
 # Cleanup file
 if [ -e $ERRLOG ]; then
     rm $ERRLOG
 fi
 
-printf "\E[32m" #green
-echo "Compiling ... "
-printf "\E[34m" #blue
+success "Compiling..."
 
 cd bin
 make $1 2> >(tee $ERRLOG >&2)
@@ -19,18 +44,13 @@ then
     if [ $errlogstat = '0' ]; then
         rm $ERRLOG;
     fi
-    printf "\E[32m" #green
-    echo Done.
-    printf "\E[37m" #white
+    success "Done."
     exit 0
 else
-    printf "\E[31m" #red
-    echo "Errors!"
+    error "Errors!"
     # If error log exists
     if [ -e $ERRLOG ]; then
-        echo Errors written to $ERRLOG.
+        error "Errors written to $ERRLOG."
     fi
-    printf "\E[37m" #white
     exit 1
 fi
-

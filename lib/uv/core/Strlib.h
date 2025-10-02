@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Strlib.h
@@ -40,7 +38,7 @@ class Strlib
      * @param str The string to split
      * @return a vector of the items
      */
-    static std::vector<std::string> explode(std::string delimiter, std::string str);
+    static std::vector<std::string> explode(const std::string &delimiter, const std::string &str);
 
     /**
      * Trim leading and trailing whitespace from a string

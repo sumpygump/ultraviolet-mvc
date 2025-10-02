@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Config.h
@@ -17,7 +15,6 @@
 #define UV_CONFIG_H_
 
 #include <string>
-#include <map>
 
 #include "core/Ini.h"
 
@@ -47,7 +44,7 @@ class Config
     /**
      *  
      */
-    Config(std::string filename);
+    explicit Config(const std::string &filename);
 
     /**
      *  

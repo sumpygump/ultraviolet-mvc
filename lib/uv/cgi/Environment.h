@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Environment.h
@@ -173,7 +171,7 @@ class Environment
      * @param name Environment Variable Name
      * @return Found Environment Variable Value
      */
-    std::string get(const std::string name);
+    std::string get(const std::string &name);
 
     /**
      * Overloads the [] operator and calls the Environment::get function
@@ -181,14 +179,14 @@ class Environment
      * @param name Environment Variable Name
      * @return Found Environment Variable Value
      */
-    std::string operator[] (const std::string name);
+    std::string operator[] (const std::string &name);
 
     /**
      * Retrieve the content length of the http request
      *
      * @return Content length in bytes
      */
-    unsigned long getContentLength();
+    size_t getContentLength() const;
 };
 
 } // namespace uv

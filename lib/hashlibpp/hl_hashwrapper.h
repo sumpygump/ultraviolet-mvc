@@ -1,7 +1,7 @@
 /* 
  * hashlib++ - a simple hash library for C++
  * 
- * Copyright (c) 2007-2011 Benjamin Grüdelbach
+ * Copyright (c) 2007-2011 Benjamin Gruedelbach
  * 
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
@@ -209,7 +209,7 @@ class hashwrapper
 		 *  		parameter is forwarded to updateContext()
 		 *  @return 	the created hash as std::string
 		 */  
-		virtual std::string getHashFromString(std::string text)
+		virtual std::string getHashFromString(const std::string text)
 		{
 			/*
 			 * reset the context so that we can start
@@ -220,7 +220,7 @@ class hashwrapper
 			/*
 			 * we update the context with the given text
 			 */
-			updateContext((unsigned char*) text.c_str(),text.length());
+			updateContext((unsigned char*) text.c_str(), static_cast<unsigned int>(text.length()));
 
 			/*
 			 * now we can close the hash process 
@@ -246,10 +246,10 @@ class hashwrapper
 		 *  @throw	Throws a hlException if the specified file could not
 		 *  		be opened.
 		 */  
-		virtual std::string getHashFromFile(std::string filename)
+		virtual std::string getHashFromFile(const std::string &filename)
 		{
 			FILE *file;
-			int len;
+			size_t len;
 			unsigned char buffer[1024];
 
 			/*
@@ -260,7 +260,7 @@ class hashwrapper
 			/*
 			 * open the specified file
 			 */
-			if((file = fopen(filename.c_str(), "rb")) == NULL)
+			if((file = fopen(filename.c_str(), "rb")) == nullptr)
 			{
 				throw hlException(HL_FILE_READ_ERROR,
 						  "Cannot read file \"" + 
@@ -274,7 +274,7 @@ class hashwrapper
 			 */
 			while( (len = fread(buffer,1,1024,file)) )
 			{
-				updateContext(buffer, len);
+				updateContext(buffer, static_cast<unsigned int>(len));
 			}
 
 			//close the file and create the hash

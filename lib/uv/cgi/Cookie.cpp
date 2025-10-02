@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Cookie.cpp
@@ -15,9 +13,9 @@
 
 #include <iostream>
 #include <string>
+#include <utility>
 
 #include "Cookie.h"
-#include "Environment.h"
 
 uv::Cookie::Cookie()
 {
@@ -25,16 +23,10 @@ uv::Cookie::Cookie()
     this->value = "";
 }
 
-uv::Cookie::Cookie(std::string httpCookie)
-{
-    this->name  = "";
-    this->value = "";
-}
-
 uv::Cookie::Cookie(const Cookie& cookie)
 {
-    this->name  = "";
-    this->value = "";
+    this->name  = cookie.name;
+    this->value = cookie.value;
 }
 
 std::string uv::Cookie::getName()
@@ -42,9 +34,9 @@ std::string uv::Cookie::getName()
     return this->name;
 }
 
-void uv::Cookie::setName(std::string name)
+void uv::Cookie::setName(std::string inputName)
 {
-    this->name = name;
+    this->name = std::move(inputName);
 }
 
 std::string uv::Cookie::getValue()
@@ -52,9 +44,9 @@ std::string uv::Cookie::getValue()
     return this->value;
 }
 
-void uv::Cookie::setValue(std::string value)
+void uv::Cookie::setValue(std::string inputValue)
 {
-    this->value = value;
+    this->value = std::move(inputValue);
 }
 
 std::string uv::Cookie::toString()

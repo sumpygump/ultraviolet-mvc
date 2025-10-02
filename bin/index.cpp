@@ -3,13 +3,11 @@
  * Copyright (C) 2010 Maru Mari Katana Sashimi
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /**
  * @mainpage Ultraviolet C++ MVC Framework
- * 
+ *
  * @section intro Introduction
  * Greetings fellow hyper-traveler! This is a web framework in C++.
  * Right now it is in its infancy. Currently the CGI system and other core
@@ -18,8 +16,6 @@
 
 #include <iostream>
 #include <string>
-#include <cstdlib>
-#include <ctime>
 #include <sstream>
 
 #include "cgi/Environment.h"
@@ -33,22 +29,21 @@
 #include "framework/Config.h"
 
 /**
- * This is example code for illustrating and testing features of the application 
+ * This is example code for illustrating and testing features of the application
  */
 int main()
 {
     // Example of config
-    uv::Config config = uv::Config("test.ini");
-    //std::cout << config.list();
-    //std::string dbserver = config.get("server", "database");
-    //std::cout << "The database server config setting is " << dbserver << std::endl;
+    auto config = uv::Config("test.ini");
+    // Get a value out of the cohfig like this:
+    // std::string dbserver = config.get("server", "database");
 
     uv::Request request;
     uv::Response response;
 
-    if (request.env["TERM"] != "") {
+    if (!request.env["TERM"].empty()) {
         std::cout << "Cannot run Ultraviolet from a terminal." << std::endl
-            << "Exiting." << std::endl;
+                  << "Exiting." << std::endl;
         return 1;
     }
 
@@ -60,13 +55,11 @@ int main()
     response.headers.set("Set-Cookie: userid=154844746557324485445; max-age=1024; version=1");
     response.headers.set("Set-Cookie: deleteme=; max-age=0"); // to delete a cookie, set max-age=0
 
-    //std::cout << response.headers << "uv::cgi started.<br />";
-
     // Set up session
-    uv::Session* session = NULL;// = new uv::Session();
+    uv::Session* session = nullptr;
     if (request.env["UV_AUTO_SESSION"] == "on") {
         uv::Cookie* sessionCookie = request.cookies.retrieve("UVSESSID");
-        if (sessionCookie == NULL) {
+        if (sessionCookie == nullptr) {
             session = new uv::Session();
             std::string sessionId = session->createId();
             response.headers.set("Set-Cookie: UVSESSID=" + sessionId);
@@ -88,19 +81,19 @@ int main()
             ic.setTitle("test POST | Ultraviolet MVC");
             oss << "<h1>Ultraviolet : Test POST</h1>" << std::endl
                 << "<p>Submit the form to test the POST request.</p>" << std::endl
-                << "<form action=\"\" method=\"post\">"
-                << "<label>field1 <input type=\"text\" name=\"field1\" value=\"test value\" /></label>" << br
-                << "<label>field2 <input type=\"text\" name=\"field2\" value=\"test value 2\" /></label>" << br
-                << "<label>check1 <input type=\"checkbox\" name=\"check1\" value=\"1\" /></label>" << br
-                << "<input type=\"submit\" name=\"submit\" value=\"Submit\" />"
+                << R"(<form action="" method="post">)"
+                << R"(<label>field1 <input type="text" name="field1" value="test value" /></label>)" << br
+                << R"(<label>field2 <input type="text" name="field2" value="test value 2" /></label>)" << br
+                << R"(<label>check1 <input type="checkbox" name="check1" value="1" /></label>)" << br
+                << R"(<input type="submit" name="submit" value="Submit" />)"
                 << "</form>" << std::endl
                 << "<p>Submit the form to test the multipart/form-data request.</p>" << std::endl
-                << "<form action=\"\" method=\"post\" enctype=\"multipart/form-data\">"
-                << "<label>field1 <input type=\"text\" name=\"field1\" value=\"test value\" /></label>" << br
-                << "<label>field2 <input type=\"text\" name=\"field2\" value=\"test value 2\" /></label>" << br
-                << "<label>testfile <input type=\"file\" name=\"testfile\" /></label>" << br
-                << "<label>testfile2 <input type=\"file\" name=\"testfile2\" /></label>" << br
-                << "<input type=\"submit\" name=\"submit\" value=\"Submit\" />"
+                << R"(<form action="" method="post" enctype="multipart/form-data">)"
+                << R"(<label>field1 <input type="text" name="field1" value="test value" /></label>)" << br
+                << R"(<label>field2 <input type="text" name="field2" value="test value 2" /></label>)" << br
+                << R"(<label>testfile <input type="file" name="testfile" /></label>)" << br
+                << R"(<label>testfile2 <input type="file" name="testfile2" /></label>)" << br
+                << R"(<input type="submit" name="submit" value="Submit" />)"
                 << "</form>" << std::endl
                 << "<p>Use the querystring <a href=\"?test=post&amp;display-stdin=true\">?display-stdin=true</a> to display stdin data (for troubleshooting)</a></p>";
         } else if (request.get["test"] == "404") {
@@ -120,12 +113,16 @@ int main()
         << "<strong>GET vars</strong><pre>" << request.get.list() << "</pre>"
         << "<strong>POST vars</strong><pre>" << request.post.list() << "</pre>"
         << "<strong>Cookies</strong><pre>" << request.cookies.list() << "</pre>"
-        << "<strong>Session</strong><pre>" << session->list() << "</pre>"
-        << "<strong>FILES vars</strong><pre>";
+        << "<strong>Config</strong><pre>" << config.list() << "</pre>";
 
-    std::string filedump = "";
+    if (session) {
+        oss << "<strong>Session</strong><pre>" << session->list() << "</pre>";
+    }
+
+    oss << "<strong>FILES vars</strong><pre>";
+    std::string filedump;
     std::map<std::string, uv::File>::iterator curr, end;
-    for (curr = request.post.files.begin(), end = request.post.files.end(); curr != end; curr++) {
+    for (curr = request.post.files.begin(), end = request.post.files.end(); curr != end; ++curr) {
         filedump.append(" [" + curr->first + "] => \n" + curr->second.list() + "\n");
     }
 
@@ -139,9 +136,7 @@ int main()
     std::cout << response.headers << std::endl;
     std::cout << ic.wrapContent(oss.str());
 
-    if (session != NULL) {
-        delete session;
-    }
+    delete session;
 
     return 0;
 }

@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Post.h
@@ -49,29 +47,29 @@ public:
      * @param input The input string
      * @param contentType The content type of the http request
      */
-    void parseInput(std::string input, std::string contentType);
+    void parseInput(const std::string& input, const std::string& contentType);
 
     /**
      * Parse the input via a stream
      *
      * This is not yet implemented
      */
-    void parseInput(std::ios &stream);
+    //void parseInput(std::ios &stream);
 
     /**
      * Get the boundary from a header string
      */
-    std::string getBoundary(std::string data);
+    std::string getBoundary(const std::string& data);
 
     /**
      * Parse values from a multipart form field
      */
-    void parseFormField(std::string data);
+    void parseFormField(const std::string& data);
 
     /**
      * Parse values from a multipart header
      */
-    std::map<std::string, std::string> parseMultipartHeader(std::string data);
+    std::map<std::string, std::string> parseMultipartHeader(const std::string &data);
 
     /**
      * File uploads container
@@ -81,4 +79,4 @@ public:
 
 } // namespace uv
 
-#endif // UV_POST_H
+#endif // UV_POST_H_

@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Random.cpp
@@ -24,23 +22,7 @@ bool uv::Random::isSeeded = false;
 /**
  *  
  */
-/*uv::Random::Random()
-{
-    setSeed();
-}*/
-
-/**
- *  
- */
-/*uv::Random::Random(int seed)
-{
-    setSeed(seed);
-}*/
-
-/**
- *  
- */
-void uv::Random::setSeed(int seed)
+void uv::Random::setSeed(const unsigned int seed)
 {
     srand(seed);
     isSeeded = true;
@@ -48,15 +30,15 @@ void uv::Random::setSeed(int seed)
 
 void uv::Random::setSeed()
 {
-    time_t timeSeed = time(NULL);
+    const time_t timeSeed = time(nullptr);
     
-    setSeed(timeSeed);
+    setSeed(static_cast<unsigned int>(timeSeed));
 }
 
 /**
  *  
  */
-std::string uv::Random::generateString(int length)
+std::string uv::Random::generateString(const size_t length)
 {
     if (!isSeeded) {
         setSeed();
@@ -65,7 +47,7 @@ std::string uv::Random::generateString(int length)
     std::string result;
     result.resize(length);
 
-    for (int i = 0; i < length; i++) {
+    for (size_t i = 0; i < length; i++) {
         result[i] = charset[rand() % charset.length()];
     }
 

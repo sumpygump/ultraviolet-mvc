@@ -69,7 +69,7 @@ class File
     /**
      * Constructor
      */
-    File(std::string infilename, std::string infiledata, std::string inContentType);
+    File(const std::string &infilename, const std::string &infiledata, const std::string &inContentType);
 
     /**
      * Initialize object (called after construction)
@@ -84,12 +84,12 @@ class File
     /**
      * Save the temp file
      */
-    void saveTempFile();
+    void saveTempFile() const;
 
     /**
      * List file data
      */
-    std::string list();
+    std::string list() const;
 
   protected:
 

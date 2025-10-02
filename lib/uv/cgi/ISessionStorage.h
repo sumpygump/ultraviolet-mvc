@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file ISessionStorage.h
@@ -13,6 +11,7 @@
 
 #ifndef UV_ISESSIONSTORAGE_H_
 #define UV_ISESSIONSTORAGE_H_
+#include <string>
 
 /**
  * Ultraviolet Namespace

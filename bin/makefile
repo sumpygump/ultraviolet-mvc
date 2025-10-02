@@ -1,5 +1,6 @@
 CXX        = g++
-DEBUG_FLAG = -g
+#DEBUG_FLAG = -g -Wall -Wextra -Wshadow -Wconversion -Wpedantic -Werror
+DEBUG_FLAG = -g -Wall -Wextra -Wshadow -Wconversion -Wpedantic
 EXEC       = ${CXX} ${DEBUG_FLAG}
 RM         = rm -f
 

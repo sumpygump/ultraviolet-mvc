@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Input.h
@@ -36,7 +34,7 @@ class Input
     /**
      * Read from stdin
      */
-    size_t read(char *data, size_t length);
+    static size_t read(char *data, size_t length);
 
     /**
      * Get an environment variable

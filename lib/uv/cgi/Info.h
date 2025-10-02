@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Info.h
@@ -47,7 +45,7 @@ class Info
     /**
      * Format an attribute value pair in a table row
      */
-    static std::string avPairRow(std::string attr, std::string value);
+    static std::string avPairRow(const std::string &attr, const std::string &value);
 
 }; // class Info
 
