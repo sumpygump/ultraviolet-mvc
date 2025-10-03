@@ -34,10 +34,10 @@ uv::CookieJar::CookieJar()
 uv::CookieJar::~CookieJar()
 {
     std::vector<Cookie*>::const_iterator cookieIterator;
-    std::vector<Cookie*>::const_iterator cookieBegin = cookies.begin();
-    std::vector<Cookie*>::const_iterator cookieEnd = cookies.end();
+    const auto cookieBegin = cookies.begin();
+    const auto cookieEnd = cookies.end();
 
-    for (cookieIterator = cookieBegin; cookieIterator < cookieEnd; cookieIterator++) {
+    for (cookieIterator = cookieBegin; cookieIterator < cookieEnd; ++cookieIterator) {
         delete *cookieIterator;
     }
 }
@@ -45,15 +45,14 @@ uv::CookieJar::~CookieJar()
 /**
  *  
  */
-void uv::CookieJar::readCookies(std::string cookieString)
+void uv::CookieJar::readCookies(const std::string &cookieString)
 {
     std::string::size_type pos = 0;
     std::string::size_type oldPos, limit;
-    std::string::size_type sepLen = std::string(";").length();
+    const std::string::size_type sepLen = std::string(";").length();
     std::string name, value;
 
     oldPos = pos;
-    limit  = 0;
 
     while (true) {
         pos = cookieString.find('=', oldPos);
@@ -107,13 +106,13 @@ int uv::CookieJar::addCookie(Cookie * cookie)
 /**
  *  
  */
-uv::Cookie* uv::CookieJar::retrieve(std::string name)
+uv::Cookie* uv::CookieJar::retrieve(const std::string &name)
 {
     std::vector<Cookie*>::const_iterator cookieIterator;
-    std::vector<Cookie*>::const_iterator cookieBegin = cookies.begin();
-    std::vector<Cookie*>::const_iterator cookieEnd = cookies.end();
+    const auto cookieBegin = cookies.begin();
+    const auto cookieEnd = cookies.end();
 
-    for (cookieIterator = cookieBegin; cookieIterator < cookieEnd; cookieIterator++) {
+    for (cookieIterator = cookieBegin; cookieIterator < cookieEnd; ++cookieIterator) {
         if ((*cookieIterator)->getName() == name) {
             // Return pointer to the cookie object
             return (*cookieIterator);
@@ -130,11 +129,11 @@ uv::Cookie* uv::CookieJar::retrieve(std::string name)
 std::string uv::CookieJar::list()
 {
     std::vector<Cookie*>::const_iterator cookieIterator;
-    std::vector<Cookie*>::const_iterator cookieBegin = cookies.begin();
-    std::vector<Cookie*>::const_iterator cookieEnd = cookies.end();
+    const auto cookieBegin = cookies.begin();
+    const auto cookieEnd = cookies.end();
     std::string output;
 
-    for (cookieIterator = cookieBegin; cookieIterator < cookieEnd; cookieIterator++) {
+    for (cookieIterator = cookieBegin; cookieIterator < cookieEnd; ++cookieIterator) {
         output.append((*cookieIterator)->toString());
         output.append("\n");
     }

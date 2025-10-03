@@ -31,6 +31,11 @@ class Input
 {
   public:
     /**
+     * Destructor
+     */
+    virtual ~Input() {}
+
+    /**
      * Read from stdin
      */
     static size_t read(char *data, size_t length);

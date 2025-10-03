@@ -30,7 +30,7 @@ uv::Headers::Headers ()
 /**
  *  
  */
-void uv::Headers::set (std::string value)
+void uv::Headers::set (const std::string &value)
 {
     headerValues.push_back(value);
     isAssembled = false;
@@ -42,10 +42,10 @@ void uv::Headers::set (std::string value)
 void uv::Headers::assemble ()
 {
     std::vector<std::string>::const_iterator headerIterator;
-    std::vector<std::string>::const_iterator headerBegin = headerValues.begin();
-    std::vector<std::string>::const_iterator headerEnd = headerValues.end();
+    const auto headerBegin = headerValues.begin();
+    const auto headerEnd = headerValues.end();
 
-    for (headerIterator = headerBegin; headerIterator < headerEnd; headerIterator++) {
+    for (headerIterator = headerBegin; headerIterator < headerEnd; ++headerIterator) {
         headers.append(*headerIterator);
 
         // TODO: Refactor to use streams, and replace \n with endl to make more robust

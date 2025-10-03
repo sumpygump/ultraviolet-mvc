@@ -81,7 +81,7 @@ public:
      *
      * @return Cookie String
      */
-    std::string toString();
+    std::string toString() const;
 
     /**
      * Stream output

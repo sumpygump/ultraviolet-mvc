@@ -85,7 +85,7 @@ class hlException
 			 *  @param	er	Error number
 			 *  @param	m	Error message
 			 */  
-			hlException(hlerror er, std::string m)
+			hlException(const hlerror er, const std::string &m)
 			{
 				this->iError = er;
 				this->strMessge = m;
@@ -95,7 +95,7 @@ class hlException
 			 *  @brief 	constructor
 			 *  @param	m	Error Message
 			 */  
-			hlException(std::string m)
+			explicit hlException(const std::string &m)
 			{
 				this->iError = HL_UNKNOWN_SEE_MSG;
 				this->strMessge = m;
@@ -105,7 +105,7 @@ class hlException
 			 *  @brief 	returns the error message
 			 *  @return	the error message
 			 */  
-			std::string error_message(void)
+			std::string error_message()
 			{
 				return strMessge;
 			}
@@ -114,7 +114,7 @@ class hlException
 			 *  @brief 	returns the error number
 			 *  @return	the error number
 			 */  
-			hlerror error_number(void)
+			[[nodiscard]] hlerror error_number() const
 			{
 				return iError;
 			}

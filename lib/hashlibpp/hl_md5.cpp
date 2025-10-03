@@ -226,7 +226,7 @@ void MD5::MD5Transform (unsigned long int state[4], unsigned char block[64])
 	/* 
 	 * Zeroize sensitive information.
 	 */
-	MD5_memset ((POINTER)x, 0, sizeof (x));
+	MD5_memset (reinterpret_cast<POINTER>(x), 0, sizeof (x));
 }
 
 /**
@@ -236,15 +236,15 @@ void MD5::MD5Transform (unsigned long int state[4], unsigned char block[64])
  *  @param	len The length of the input assuming it is a
  *  		multiple of 4
  */  
-void MD5::Encode (unsigned char *output, unsigned long int *input, unsigned int len)
+void MD5::Encode (unsigned char *output, const unsigned long int *input, unsigned int len)
 {
 	unsigned int i, j;
 
 	for (i = 0, j = 0; j < len; i++, j += 4) {
-		output[j] = (unsigned char)(input[i] & 0xff);
-		output[j+1] = (unsigned char)((input[i] >> 8) & 0xff);
-		output[j+2] = (unsigned char)((input[i] >> 16) & 0xff);
-		output[j+3] = (unsigned char)((input[i] >> 24) & 0xff);
+		output[j] = static_cast<unsigned char>(input[i] & 0xff);
+		output[j+1] = static_cast<unsigned char>(input[i] >> 8 & 0xff);
+		output[j+2] = static_cast<unsigned char>(input[i] >> 16 & 0xff);
+		output[j+3] = static_cast<unsigned char>(input[i] >> 24 & 0xff);
 	}
 }
 
@@ -255,15 +255,15 @@ void MD5::Encode (unsigned char *output, unsigned long int *input, unsigned int 
  *  @param	len The length of the input assuming it is a
  *  		multiple of 4
  */  
-void MD5::Decode (unsigned long int *output, unsigned char *input, unsigned int len)
+void MD5::Decode (unsigned long int *output, const unsigned char *input, const unsigned int len)
 {
 	  unsigned int i, j;
 
 	  for (i = 0, j = 0; j < len; i++, j += 4)
-		 output[i] = ((unsigned long int)input[j]) | 
-			     (((unsigned long int)input[j+1]) << 8) |
-			     (((unsigned long int)input[j+2]) << 16) |
-			     (((unsigned long int)input[j+3]) << 24);
+		 output[i] = static_cast<unsigned long int>(input[j]) |
+			     static_cast<unsigned long int>(input[j + 1]) << 8 |
+			     static_cast<unsigned long int>(input[j + 2]) << 16 |
+			     static_cast<unsigned long int>(input[j + 3]) << 24;
 }
 
 /**
@@ -273,7 +273,7 @@ void MD5::Decode (unsigned long int *output, unsigned char *input, unsigned int 
  *  @param	input Data to copy where POINTER is a unsigned char*
  *  @param	len The length of the data
  */  
-void MD5::MD5_memcpy (POINTER output, POINTER input, unsigned int len)
+void MD5::MD5_memcpy (const POINTER output, POINTER input, unsigned int len)
 {
 	/*
 	 * TODO-Note: Replace "for loop" with standard memcpy if possible.
@@ -292,14 +292,14 @@ void MD5::MD5_memcpy (POINTER output, POINTER input, unsigned int len)
  *  @param	len The length of the data
  *  
  */  
-void MD5::MD5_memset (POINTER output,int value,unsigned int len)
+void MD5::MD5_memset (const POINTER output, const int value, const unsigned int len)
 {
 	/*
 	 * TODO-Note: Replace "for loop" with standard memset if possible.
 	 */
 	unsigned int i;
 	for (i = 0; i < len; i++)
-		((char *)output)[i] = (char)value;
+		reinterpret_cast<char *>(output)[i] = static_cast<char>(value);
 }
 
 //----------------------------------------------------------------------	
@@ -332,14 +332,14 @@ void MD5::MD5Update (HL_MD5_CTX *context, unsigned char *input, unsigned int inp
 	  unsigned int i, index, partLen;
 
 	  /* Compute number of bytes mod 64 */
-	  index = (unsigned int)((context->count[0] >> 3) & 0x3F);
+	  index = static_cast<unsigned int>(context->count[0] >> 3 & 0x3F);
 
 	  /* Update number of bits */
-	  if ( (context->count[0] += ((unsigned long int)inputLen << 3))
-	       < ((unsigned long int)inputLen << 3))
+	  if ( (context->count[0] += static_cast<unsigned long int>(inputLen) << 3)
+	       < static_cast<unsigned long int>(inputLen) << 3)
 		context->count[1]++;
 
-	  context->count[1] += ((unsigned long int)inputLen >> 29);
+	  context->count[1] += static_cast<unsigned long int>(inputLen) >> 29;
 	  partLen = 64 - index;
 
 	  /*
@@ -383,8 +383,8 @@ void MD5::MD5Final (unsigned char digest[16], HL_MD5_CTX *context)
 	/* 
 	 * Pad out to 56 mod 64.
 	 */
-	index = (unsigned int)((context->count[0] >> 3) & 0x3f);
-	padLen = (index < 56) ? (56 - index) : (120 - index);
+	index = static_cast<unsigned int>(context->count[0] >> 3 & 0x3f);
+	padLen = index < 56 ? 56 - index : 120 - index;
 	MD5Update (context, PADDING, padLen);
 
 	/* Append length (before padding) */
@@ -396,7 +396,7 @@ void MD5::MD5Final (unsigned char digest[16], HL_MD5_CTX *context)
 	/*
 	 * Zeroize sensitive information.
 	 */
-	MD5_memset ((POINTER)context, 0, sizeof (*context));
+	MD5_memset (reinterpret_cast<POINTER>(context), 0, sizeof (*context));
 }
 
 //----------------------------------------------------------------------

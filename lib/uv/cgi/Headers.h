@@ -44,7 +44,7 @@ class Headers
      *
      * @param value Value of the header to be set
      */
-    void set (std::string value);
+    void set (const std::string &value);
 
     /**
      * Returns a converted string form of the Headers object

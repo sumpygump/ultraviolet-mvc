@@ -38,12 +38,12 @@ class SessionFileStorage
     /**
      * Load
      */
-    std::string load(const std::string& sessionId);
+    std::string load(const std::string& sessionId) const;
 
     /**
      * Save
      */
-    bool save(const std::string& sessionId, const std::string &data);
+    bool save(const std::string& sessionId, const std::string &data) const;
 
     /**
      * Set the path

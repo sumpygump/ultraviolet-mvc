@@ -25,7 +25,7 @@ void uv::Post::parseInput(const std::string& input, const std::string& contentTy
     // Detect whether multipart/form-data
     if (contentType.substr(0, 9) == "multipart") {
         // get boundary
-        std::string boundary = getBoundary(contentType);
+        const std::string boundary = getBoundary(contentType);
 
         std::string fieldSeparator = "--";
         fieldSeparator.append(boundary);
@@ -36,8 +36,8 @@ void uv::Post::parseInput(const std::string& input, const std::string& contentTy
         terminatorSeparator.append("--\r\n");
 
         std::string::size_type pos;
-        std::string::size_type start = input.find(fieldSeparator);
-        std::string::size_type fsLen = fieldSeparator.length();
+        const std::string::size_type start = input.find(fieldSeparator);
+        const std::string::size_type fsLen = fieldSeparator.length();
         std::string::size_type oldPos = start + fsLen;
 
         while (true) {
@@ -120,7 +120,7 @@ void uv::Post::parseFormField(const std::string& data)
  */
 std::map<std::string, std::string> uv::Post::parseMultipartHeader(const std::string &data)
 {
-    std::string::size_type quotemark = std::string("\"").length();
+    const std::string::size_type quotemark = std::string("\"").length();
     std::map<std::string, std::string> params;
     std::vector<std::string> lines;
     std::vector<std::string> pairs;

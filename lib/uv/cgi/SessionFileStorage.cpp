@@ -29,7 +29,7 @@ uv::SessionFileStorage::SessionFileStorage()
 /**
  *
  */
-std::string uv::SessionFileStorage::load(const std::string& sessionId)
+std::string uv::SessionFileStorage::load(const std::string& sessionId) const
 {
     std::string filename = this->path;
     filename.append("/");
@@ -53,7 +53,7 @@ std::string uv::SessionFileStorage::load(const std::string& sessionId)
 /**
  *  
  */
-bool uv::SessionFileStorage::save(const std::string &sessionId, const std::string &data)
+bool uv::SessionFileStorage::save(const std::string &sessionId, const std::string &data) const
 {
     std::string filename = this->path;
     filename.append("/");

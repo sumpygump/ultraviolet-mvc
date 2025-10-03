@@ -123,10 +123,10 @@ class MD5
 		 *  @param	input Input data
 		 *  @param	len The length of the input assuming it is a
 		 *  		multiple of 4
-		 */  
-		void Encode (unsigned char* output,
-			     unsigned long int *input,
-			     unsigned int len);
+		 */
+		static void Encode (unsigned char* output,
+		                    const unsigned long int *input,
+		                    unsigned int len);
 
 		/**
 		 *  @brief 	Decodes input data into output
@@ -134,10 +134,10 @@ class MD5
 		 *  @param	input Input data
 		 *  @param	len The length of the input assuming it is a
 		 *  		multiple of 4
-		 */  
-		void Decode (unsigned long int *output,
-			     unsigned char *input,
-			     unsigned int len);
+		 */
+		static void Decode (unsigned long int *output,
+		                    const unsigned char *input,
+		                    unsigned int len);
 
 		/**
 		 *  @brief 	internal memory management
@@ -145,8 +145,8 @@ class MD5
 		 *  		char*
 		 *  @param	input Data to copy where POINTER is a unsigned char*
 		 *  @param	len The length of the data
-		 */  
-		void MD5_memcpy (POINTER output, POINTER input, unsigned int len);
+		 */
+		static void MD5_memcpy (POINTER output, POINTER input, unsigned int len);
 
 		/**
 		 *  @brief 	internal memory management
@@ -155,8 +155,8 @@ class MD5
 		 *  @param	value Value to fill the memory with
 		 *  @param	len The length of the data
 		 *  
-		 */  
-		void MD5_memset (POINTER output, int value, unsigned int len);
+		 */
+		static void MD5_memset (POINTER output, int value, unsigned int len);
 
 	public:
 	
@@ -164,8 +164,8 @@ class MD5
 		 *  @brief 	Initialization begins an operation,
 		 *  		writing a new context
 		 *  @param 	context	The HL_MD5_CTX context to initialize
-		 */  
-		void MD5Init (HL_MD5_CTX* context);
+		 */
+		static void MD5Init (HL_MD5_CTX* context);
 
 		/**
 		 *  @brief 	Block update operation. Continues an md5

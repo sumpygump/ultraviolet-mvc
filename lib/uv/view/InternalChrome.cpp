@@ -34,7 +34,7 @@ void uv::InternalChrome::setTitle(const std::string &titleInput)
 /**
  *  
  */
-std::string uv::InternalChrome::wrapContent(const std::string &content)
+std::string uv::InternalChrome::wrapContent(const std::string &content) const
 {
     std::ostringstream oss (std::ostringstream::out);
 

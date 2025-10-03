@@ -56,7 +56,7 @@ void uv::Session::load()
     // load data from storage
     this->initStorage();
 
-    std::string sessdata = this->storage->load(this->sessionId);
+    const std::string sessdata = this->storage->load(this->sessionId);
 
     this->parseInput(sessdata);
 }

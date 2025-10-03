@@ -132,7 +132,7 @@ void md5wrapper::resetContext(void)
  * 		test-string "The quick brown fox jumps over the lazy
  * 		dog"
  */
-std::string md5wrapper::getTestHash(void)
+std::string md5wrapper::getTestHash()
 {
 	return "9e107d9d372bb6826bd81d3542a419d6";
 }

@@ -54,9 +54,8 @@ uv::Environment::Environment()
 void uv::Environment::init()
 {
     // Store the content length as a long
-    contentLength = atol(
-        this->get(Environment::kContentLength).c_str()
-    );
+    char* end = nullptr;
+    contentLength = strtoul(this->get(Environment::kContentLength).c_str(), &end, 10);
 }
 
 /**

@@ -12,8 +12,9 @@
  */
 
 #include <cstdlib>
-#include <string>
 #include <ctime>
+#include <random>
+#include <string>
 
 #include "Random.h"
 
@@ -47,8 +48,13 @@ std::string uv::Random::generateString(const size_t length)
     std::string result;
     result.resize(length);
 
+    std::random_device rd;  // a seed source for the random number engine
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> distrib(1, static_cast<int>(charset.length()));
+
     for (size_t i = 0; i < length; i++) {
-        result[i] = charset[rand() % charset.length()];
+        //result[i] = charset[static_cast<size_t>(rand()) % charset.length()];
+        result[i] = charset[static_cast<size_t>(distrib(gen))];
     }
 
     return result;

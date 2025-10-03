@@ -42,7 +42,7 @@ class InternalChrome
      * @param content The page contents
      * @return String with chrome (html)
      */
-    std::string wrapContent(const std::string &content);
+    std::string wrapContent(const std::string &content) const;
 
     /**
      * Set title

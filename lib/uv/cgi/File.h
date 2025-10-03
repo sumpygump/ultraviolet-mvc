@@ -63,7 +63,9 @@ class File
     /**
      * Default constructor
      */
-    File();
+    File() {
+        filesize = 0;
+    }
 
     /**
      * Constructor
@@ -88,7 +90,7 @@ class File
     /**
      * List file data
      */
-    std::string list() const;
+    [[nodiscard]] std::string list() const;
 
   protected:
 

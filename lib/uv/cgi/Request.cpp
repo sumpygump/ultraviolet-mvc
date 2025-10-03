@@ -11,6 +11,9 @@
  * Handles parsing HTTP requests.
  */
 
+#include <vector>
+
+#include "Environment.h"
 #include "Request.h"
 
 /**

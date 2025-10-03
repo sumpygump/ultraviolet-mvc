@@ -49,7 +49,7 @@ class CookieJar
     /**
      * Parse the cookie header and set cookies
      */
-    void readCookies(std::string cookieString);
+    void readCookies(const std::string& cookieString);
 
     /**
      * Add a cookie to the jar
@@ -59,7 +59,7 @@ class CookieJar
     /**
      * Retrieve a cookie by name
      */
-    Cookie* retrieve(std::string name);
+    Cookie* retrieve(const std::string &name);
 
     /**
      * List cookies in jar

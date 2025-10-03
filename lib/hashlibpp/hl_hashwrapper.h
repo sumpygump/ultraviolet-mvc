@@ -78,7 +78,6 @@
 
 //----------------------------------------------------------------------	
 //C includes
-//#include <stdio.h>
 #include <fstream>
 
 //----------------------------------------------------------------------	
@@ -119,7 +118,7 @@ class hashwrapper
 		 *
 		 *  @return 	the created hash as std::string
 		 */  
-		virtual std::string hashIt(void) = 0;
+		virtual std::string hashIt() = 0;
 
 		/**
 		 *  @brief 	This internal member-function
@@ -153,7 +152,7 @@ class hashwrapper
 		 *  		This memberfunction is pure virtual and
 		 *  		has to be implemented by the subclass
 		 */  
-		virtual void resetContext(void) = 0;
+		virtual void resetContext() = 0;
 
 
 		/**
@@ -161,14 +160,14 @@ class hashwrapper
 		 * 		test-string "The quick brown fox jumps over the lazy
 		 * 		dog"
 		 */
-		virtual std::string getTestHash(void) = 0;
+		virtual std::string getTestHash() = 0;
 
 	public:
 
 		/**
 		 * @brief Default Konstruktor
 		 */
-		hashwrapper( void ) 
+		hashwrapper()
 			: teststring("The quick brown fox jumps over the lazy dog")
 		{
 		}
@@ -176,14 +175,14 @@ class hashwrapper
 		/**
 		 *  @brief 	Default destructor
 		 */  
-		virtual ~hashwrapper ( void ) { };
+		virtual ~hashwrapper () { };
 
 		/**
 		 * @brief Method for testing the concrete implementation
 		 */
-		virtual void test( void )
+		virtual void test()
 		{
-			std::string hash = this->getHashFromString(teststring);
+			const std::string hash = this->getHashFromString(teststring);
 			std::string verify = this->getTestHash();
 			if(hash != verify)
 			{
@@ -209,7 +208,7 @@ class hashwrapper
 		 *  		parameter is forwarded to updateContext()
 		 *  @return 	the created hash as std::string
 		 */  
-		virtual std::string getHashFromString(const std::string text)
+		virtual std::string getHashFromString(const std::string &text)
 		{
 			/*
 			 * reset the context so that we can start
@@ -220,6 +219,7 @@ class hashwrapper
 			/*
 			 * we update the context with the given text
 			 */
+			// ReSharper disable once CppCStyleCast
 			updateContext((unsigned char*) text.c_str(), static_cast<unsigned int>(text.length()));
 
 			/*

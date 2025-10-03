@@ -58,7 +58,7 @@ public:
     /**
      * Get the boundary from a header string
      */
-    std::string getBoundary(const std::string& data);
+    static std::string getBoundary(const std::string& data);
 
     /**
      * Parse values from a multipart form field
@@ -68,7 +68,7 @@ public:
     /**
      * Parse values from a multipart header
      */
-    std::map<std::string, std::string> parseMultipartHeader(const std::string &data);
+    static std::map<std::string, std::string> parseMultipartHeader(const std::string &data);
 
     /**
      * File uploads container

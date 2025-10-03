@@ -19,13 +19,13 @@
 
 uv::Cookie::Cookie()
 {
-    this->name  = "";
+    this->name = "";
     this->value = "";
 }
 
 uv::Cookie::Cookie(const Cookie& cookie)
 {
-    this->name  = cookie.name;
+    this->name = cookie.name;
     this->value = cookie.value;
 }
 
@@ -49,7 +49,7 @@ void uv::Cookie::setValue(std::string inputValue)
     this->value = std::move(inputValue);
 }
 
-std::string uv::Cookie::toString()
+std::string uv::Cookie::toString() const
 {
     return this->name + "=" + this->value + ";";
 }
