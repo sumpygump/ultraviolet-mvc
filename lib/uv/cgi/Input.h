@@ -26,7 +26,6 @@ namespace uv
  * Input wrapper
  *
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class Input
 {

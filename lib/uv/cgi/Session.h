@@ -28,7 +28,6 @@ class SessionFileStorage;
  * Session
  *
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class Session : public Params
 {

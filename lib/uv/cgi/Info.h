@@ -26,7 +26,6 @@ namespace uv
  * Info is a class to aggregate vars for display
  *
  * @author Jansen Price <jansen.price@sierra-bravo.com>
- * @version $Id$
  */
 class Info
 {

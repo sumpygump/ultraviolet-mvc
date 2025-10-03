@@ -30,8 +30,7 @@ namespace uv
  * See rfc 2109 for version 1 of HTTP Cookies
  * http://www.w3.org/Protocols/rfc2109/rfc2109.txt
  * 
- * @author Jansen Price <jansen.price@sierra-bravo.com>
- * @version $Id$
+ * @author Jansen Price <jansen.price@gmail.com>
  */
 class CookieJar
 {

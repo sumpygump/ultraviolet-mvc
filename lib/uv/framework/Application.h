@@ -30,6 +30,11 @@ namespace uv
 namespace framework
 {
 
+/**
+ * Ultraviolet Application
+ *
+ * Provides main application class
+ */
 class Application
 {
   public:

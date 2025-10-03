@@ -27,7 +27,6 @@ namespace uv
  * The Response class stores object used for the HTTP response
  *
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class Response
 {

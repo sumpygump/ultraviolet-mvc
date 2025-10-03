@@ -25,8 +25,7 @@ namespace uv
 /**
  * Provides library functions for strings
  * 
- * @author Jansen Price <jansen.price@sierra-bravo.com>
- * @version $Id$
+ * @author Jansen Price <jansen.price@gmail.com>
  */
 class Strlib
 {

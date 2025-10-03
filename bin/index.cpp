@@ -21,6 +21,7 @@
 #include "cgi/Environment.h"
 #include "cgi/Info.h"
 #include "cgi/Cookie.h"
+#include "cgi/File.h"
 #include "cgi/Session.h"
 #include "cgi/Request.h"
 #include "cgi/Response.h"

@@ -30,7 +30,6 @@ namespace uv
  * as part of the HTTP request (GET method)
  *
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class Request
 {

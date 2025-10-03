@@ -32,7 +32,6 @@ typedef std::map<std::string, std::string> iniPairs;
  * Read and parse an ini file
  * 
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class Ini
 {

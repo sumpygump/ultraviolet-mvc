@@ -28,7 +28,6 @@ namespace uv
  * using the POST request method.
  *
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class Post : public Params
 {

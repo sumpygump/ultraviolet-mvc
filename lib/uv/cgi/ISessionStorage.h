@@ -23,7 +23,6 @@ namespace uv
  * Session storage interface
  *
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class ISessionStorage
 {

@@ -25,7 +25,6 @@ namespace uv
  * Session storage in a file
  *
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class SessionFileStorage
 {

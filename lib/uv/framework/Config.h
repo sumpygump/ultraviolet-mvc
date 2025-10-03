@@ -28,7 +28,6 @@ namespace uv
  * Store configuration variables
  * 
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class Config
 {

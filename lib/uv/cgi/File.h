@@ -31,7 +31,6 @@ class Random;
  * The File class represents a file upload
  * 
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class File
 {

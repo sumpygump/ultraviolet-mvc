@@ -26,7 +26,6 @@ namespace uv
  * Internal chrome for default layout
  * 
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class InternalChrome
 {

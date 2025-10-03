@@ -30,7 +30,6 @@ namespace uv
  *
  * @author Adam Ranfelt <adamRenny@gmail.com> 
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class Headers
 {       

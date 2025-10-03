@@ -29,7 +29,6 @@ namespace uv
  * http://www.w3.org/Protocols/rfc2109/rfc2109.txt
  *
  * @author Adam Ranfelt <adamRenny@gmail.com>
- * @version $Id$
  */
 class Cookie
 {
