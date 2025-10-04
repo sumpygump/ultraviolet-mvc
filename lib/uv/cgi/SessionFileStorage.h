@@ -28,7 +28,7 @@ namespace uv
  */
 class SessionFileStorage
 {
-  public:
+public:
 
     /**
      * Default constructor
@@ -38,19 +38,19 @@ class SessionFileStorage
     /**
      * Load
      */
-    std::string load(const std::string& sessionId) const;
+    std::string load(const std::string &sessionId) const;
 
     /**
      * Save
      */
-    bool save(const std::string& sessionId, const std::string &data) const;
+    bool save(const std::string &sessionId, const std::string &data) const;
 
     /**
      * Set the path
      */
     void setPath(const std::string &pathInput);
 
-  protected:
+protected:
 
     /**
      * Path to session files

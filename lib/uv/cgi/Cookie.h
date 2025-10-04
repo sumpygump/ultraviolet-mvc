@@ -44,7 +44,7 @@ public:
      *
      * @param cookie Single Cookie String from the header
      */
-    Cookie(const Cookie& cookie);
+    Cookie(const Cookie &cookie);
 
     /**
      * Cookie Name Get Method
@@ -90,7 +90,7 @@ public:
      * @param cookie Cookie to be output
      * @return Value of the Cookie
      */
-    friend std::ostream& operator<< (std::ostream& out, const Cookie& cookie);
+    friend std::ostream &operator<<(std::ostream &out, const Cookie &cookie);
 
 protected:
 

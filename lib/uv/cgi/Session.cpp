@@ -27,7 +27,7 @@
 uv::Session::Session()
 {
     this->sessionId = "";
-    this->storage = nullptr;
+    this->storage   = nullptr;
 }
 
 /**
@@ -76,7 +76,7 @@ void uv::Session::setId(const std::string &setSessionId)
 std::string uv::Session::createId()
 {
     hashwrapper *h = new md5wrapper();
-    auto *env = new Environment();
+    auto *env      = new Environment();
 
     h->test(); // This ensures the library is working
 
@@ -84,8 +84,8 @@ std::string uv::Session::createId()
     std::stringstream ss;
 
     ss << env->get(Environment::kRemoteAddr)
-       << env->get(Environment::kServerName)
-       << seconds;
+        << env->get(Environment::kServerName)
+        << seconds;
 
     this->sessionId = h->getHashFromString(ss.str());
 

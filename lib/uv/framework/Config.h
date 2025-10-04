@@ -31,14 +31,14 @@ namespace uv
  */
 class Config
 {
-  protected:
+protected:
 
     /**
      *  
      */
     Ini source;
 
-  public:
+public:
 
     /**
      *  

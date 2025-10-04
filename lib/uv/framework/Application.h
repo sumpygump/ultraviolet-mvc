@@ -37,7 +37,8 @@ namespace framework
  */
 class Application
 {
-  public:
+public:
+
     /**
      * Default constructor
      */

@@ -30,7 +30,8 @@ namespace uv
  */
 class Environment
 {
-  public:
+public:
+
     /**
      * Stores CGI environment variable for the document root 
      */
@@ -178,7 +179,7 @@ class Environment
      * @param name Environment Variable Name
      * @return Found Environment Variable Value
      */
-    std::string operator[] (const std::string &name);
+    std::string operator[](const std::string &name);
 
     /**
      * Retrieve the content length of the http request

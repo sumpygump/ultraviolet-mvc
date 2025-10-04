@@ -22,9 +22,9 @@
  */
 uv::File::File(const std::string &infilename, const std::string &infiledata, const std::string &inContentType)
 {
-    filename = infilename;
-    filedata = infiledata;
-    filesize = infiledata.length();
+    filename    = infilename;
+    filedata    = infiledata;
+    filesize    = infiledata.length();
     contentType = inContentType;
     init();
 }

@@ -32,26 +32,27 @@ namespace uv
  * @author Jansen Price <jansen.price@gmail.com>
  */
 class Headers
-{       
-  public:
+{
+public:
+
     /**
      * Default Header Constructor
      */
-    Headers ();
+    Headers();
 
     /**
      * Sets a header with a value
      *
      * @param value Value of the header to be set
      */
-    void set (const std::string &value);
+    void set(const std::string &value);
 
     /**
      * Returns a converted string form of the Headers object
      *
      * @return Headers in String form
      */
-    std::string toString ();
+    std::string toString();
 
     /**
      * Overloaded stream output function to output to streams
@@ -60,9 +61,10 @@ class Headers
      * @param header Header to be output
      * @return Stream written to
      */
-    friend std::ostream& operator<< (std::ostream& out, Headers& header);
+    friend std::ostream &operator<<(std::ostream &out, Headers &header);
 
-  protected:
+protected:
+
     /**
      * Whether the string has been assembled
      */
@@ -81,7 +83,7 @@ class Headers
     /**
      * Generates the output string
      */
-    void assemble ();
+    void assemble();
 };
 
 } // namespace uv

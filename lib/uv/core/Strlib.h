@@ -29,7 +29,8 @@ namespace uv
  */
 class Strlib
 {
-  public:
+public:
+
     /**
      * Split a string by a delimiter
      *
@@ -42,7 +43,7 @@ class Strlib
     /**
      * Trim leading and trailing whitespace from a string
      */
-    static std::string trim(std::string& str);
+    static std::string trim(std::string &str);
 
     /**
      * Convert hex to char

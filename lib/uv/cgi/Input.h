@@ -29,11 +29,14 @@ namespace uv
  */
 class Input
 {
-  public:
+public:
+
     /**
      * Destructor
      */
-    virtual ~Input() {}
+    virtual ~Input()
+    {
+    }
 
     /**
      * Read from stdin

@@ -35,7 +35,7 @@ typedef std::map<std::string, std::string> iniPairs;
  */
 class Ini
 {
-  protected:
+protected:
 
     /**
      * Key-value pairs map
@@ -46,12 +46,12 @@ class Ini
      * Storage for the current section (during parsing)
      */
     std::string currentSection;
-    
+
     /**
      * Storage for filename of .ini file
      */
     std::string filename;
-    
+
     /**
      * Read the file
      */
@@ -72,8 +72,8 @@ class Ini
      * @param section The name of the section
      */
     void setPair(const std::string &key, const std::string &value, const std::string &section);
-    
-  public:
+
+public:
 
     /**
      * Default constructor
@@ -86,7 +86,7 @@ class Ini
      * @param filenameInput Name of file (path)
      */
     explicit Ini(const std::string &filenameInput);
-    
+
     /**
      * Get pairs
      */

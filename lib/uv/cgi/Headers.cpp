@@ -22,7 +22,7 @@
 /**
  *  
  */
-uv::Headers::Headers ()
+uv::Headers::Headers()
 {
     isAssembled = false;
 }
@@ -30,7 +30,7 @@ uv::Headers::Headers ()
 /**
  *  
  */
-void uv::Headers::set (const std::string &value)
+void uv::Headers::set(const std::string &value)
 {
     headerValues.push_back(value);
     isAssembled = false;
@@ -39,11 +39,11 @@ void uv::Headers::set (const std::string &value)
 /**
  *  
  */
-void uv::Headers::assemble ()
+void uv::Headers::assemble()
 {
     std::vector<std::string>::const_iterator headerIterator;
     const auto headerBegin = headerValues.begin();
-    const auto headerEnd = headerValues.end();
+    const auto headerEnd   = headerValues.end();
 
     for (headerIterator = headerBegin; headerIterator < headerEnd; ++headerIterator) {
         headers.append(*headerIterator);
@@ -58,7 +58,7 @@ void uv::Headers::assemble ()
 /**
  *  
  */
-std::string uv::Headers::toString ()
+std::string uv::Headers::toString()
 {
     if (!isAssembled) {
         assemble();
@@ -73,7 +73,7 @@ namespace uv
 /**
  *  
  */
-std::ostream& operator << (std::ostream& out, Headers& header)
+std::ostream &operator <<(std::ostream &out, Headers &header)
 {
     return out << header.toString() << std::endl;
 }

@@ -36,7 +36,7 @@ void uv::InternalChrome::setTitle(const std::string &titleInput)
  */
 std::string uv::InternalChrome::wrapContent(const std::string &content) const
 {
-    std::ostringstream oss (std::ostringstream::out);
+    std::ostringstream oss(std::ostringstream::out);
 
     oss << "<html>"
         << "<head>"
@@ -59,7 +59,7 @@ std::string uv::InternalChrome::wrapContent(const std::string &content) const
  */
 std::string uv::InternalChrome::getStyles()
 {
-    std::ostringstream oss (std::ostringstream::out);
+    std::ostringstream oss(std::ostringstream::out);
 
     oss << "<style type=\"text/css\">"
         "body{margin:0;font-size:13px;font-family:sans-serif;padding:0 2em;background-color:#e6ddd5;}"

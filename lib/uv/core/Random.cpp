@@ -32,7 +32,7 @@ void uv::Random::setSeed(const unsigned int seed)
 void uv::Random::setSeed()
 {
     const time_t timeSeed = time(nullptr);
-    
+
     setSeed(static_cast<unsigned int>(timeSeed));
 }
 
@@ -48,7 +48,7 @@ std::string uv::Random::generateString(const size_t length)
     std::string result;
     result.resize(length);
 
-    std::random_device rd;  // a seed source for the random number engine
+    std::random_device rd; // a seed source for the random number engine
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> distrib(1, static_cast<int>(charset.length()));
 

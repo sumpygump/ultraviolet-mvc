@@ -34,7 +34,8 @@ class Random;
  */
 class File
 {
-  public:
+public:
+
     /**
      * The name of the file from the form post
      */
@@ -63,7 +64,8 @@ class File
     /**
      * Default constructor
      */
-    File() {
+    File()
+    {
         filesize = 0;
     }
 
@@ -92,13 +94,13 @@ class File
      */
     [[nodiscard]] std::string list() const;
 
-  protected:
+protected:
 
     /**
      * The random object
      */
     static uv::Random randomizer;
-    
+
 }; // class File
 
 } // namespace uv

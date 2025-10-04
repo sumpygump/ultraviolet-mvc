@@ -68,7 +68,7 @@ void uv::CookieJar::readCookies(const std::string &cookieString)
         }
 
         // Create a new cookie
-        auto* cookie = new Cookie();
+        auto *cookie = new Cookie();
 
         // Retrieve the cookie name
         name = cookieString.substr(oldPos, pos - oldPos);
@@ -97,7 +97,7 @@ void uv::CookieJar::readCookies(const std::string &cookieString)
 /**
  *  
  */
-int uv::CookieJar::addCookie(Cookie * cookie)
+int uv::CookieJar::addCookie(Cookie *cookie)
 {
     cookies.push_back(cookie);
     return static_cast<int>(cookies.size());
@@ -106,7 +106,7 @@ int uv::CookieJar::addCookie(Cookie * cookie)
 /**
  *  
  */
-uv::Cookie* uv::CookieJar::retrieve(const std::string &name)
+uv::Cookie *uv::CookieJar::retrieve(const std::string &name)
 {
     std::vector<Cookie*>::const_iterator cookieIterator;
     const auto cookieBegin = cookies.begin();

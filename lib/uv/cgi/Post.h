@@ -32,6 +32,7 @@ namespace uv
 class Post : public Params
 {
 public:
+
     /**
      * Parse input and populate vars
      *
@@ -46,7 +47,7 @@ public:
      * @param input The input string
      * @param contentType The content type of the http request
      */
-    void parseInput(const std::string& input, const std::string& contentType);
+    void parseInput(const std::string &input, const std::string &contentType);
 
     /**
      * Parse the input via a stream
@@ -58,12 +59,12 @@ public:
     /**
      * Get the boundary from a header string
      */
-    static std::string getBoundary(const std::string& data);
+    static std::string getBoundary(const std::string &data);
 
     /**
      * Parse values from a multipart form field
      */
-    void parseFormField(const std::string& data);
+    void parseFormField(const std::string &data);
 
     /**
      * Parse values from a multipart header

@@ -27,13 +27,13 @@ namespace uv
  */
 class Random
 {
-  public:
+public:
 
     /**
      * Set the randomize seed
      */
     static void setSeed(unsigned int seed);
-    
+
     /**
      * Set the randomize seed
      */
@@ -44,7 +44,7 @@ class Random
      */
     static std::string generateString(size_t length);
 
-  protected:
+protected:
 
     /**
      * Indicates whether the seed has been set

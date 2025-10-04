@@ -30,7 +30,8 @@ namespace uv
  */
 class Response
 {
-  public:
+public:
+
     /**
      * Default constructor
      */

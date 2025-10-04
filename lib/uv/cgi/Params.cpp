@@ -80,7 +80,7 @@ std::string uv::Params::list()
 
     std::map<std::string, std::string>::iterator curr, end;
     for (curr = vars.begin(), end = vars.end(); curr != end; ++curr) {
-       out.append(" [" + curr->first + "] => " + curr->second + "\n");
+        out.append(" [" + curr->first + "] => " + curr->second + "\n");
     }
 
     return out;

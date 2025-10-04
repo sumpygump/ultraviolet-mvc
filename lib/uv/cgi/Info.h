@@ -29,7 +29,7 @@ namespace uv
  */
 class Info
 {
-  public:
+public:
 
     /**
      * Default constructor

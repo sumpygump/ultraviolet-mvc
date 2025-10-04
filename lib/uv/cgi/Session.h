@@ -90,7 +90,7 @@ protected:
     /**
      * Storage for the session storage object
      */
-    uv::SessionFileStorage* storage;
+    uv::SessionFileStorage *storage;
 
     /**
      * Initialize the storage object

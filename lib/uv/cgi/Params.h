@@ -31,7 +31,8 @@ namespace uv
  */
 class Params
 {
-  public:
+public:
+
     /**
      * Parse the input and store the vars
      */
@@ -56,8 +57,9 @@ class Params
      * Generate a list of the vars stored in this object
      */
     std::string list();
-    
-  protected:
+
+protected:
+
     /**
      * Storage for the request vars 
      */

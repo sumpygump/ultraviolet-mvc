@@ -29,7 +29,7 @@ namespace uv
  */
 class InternalChrome
 {
-  public:
+public:
 
     /**
      * Default constructor
@@ -52,7 +52,7 @@ class InternalChrome
      */
     void setTitle(const std::string &titleInput);
 
-  protected:
+protected:
 
     /**
      * Page title

@@ -26,18 +26,21 @@ namespace uv
  */
 class ISessionStorage
 {
-  public:
+public:
+
     /**
      * Destructor
      */
-    virtual ~ISessionStorage() {}
+    virtual ~ISessionStorage()
+    {
+    }
 
     /**
      * Load the data for a given session id
      *
      * @param sessionId The session id
      */
-    virtual std::fstream* load(std::string sessionId);
+    virtual std::fstream *load(std::string sessionId);
 
     /**
      * Save data for a given session id

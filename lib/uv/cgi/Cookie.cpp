@@ -23,7 +23,7 @@ uv::Cookie::Cookie()
     this->value = "";
 }
 
-uv::Cookie::Cookie(const Cookie& cookie)
+uv::Cookie::Cookie(const Cookie &cookie)
 {
     this->name = cookie.name;
     this->value = cookie.value;
@@ -56,10 +56,8 @@ std::string uv::Cookie::toString() const
 
 namespace uv
 {
-
-std::ostream& operator << (std::ostream& out, Cookie& cookie)
+std::ostream &operator <<(std::ostream &out, Cookie &cookie)
 {
     return out << cookie.toString() << std::endl;
 }
-
 } // namespace uv

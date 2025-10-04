@@ -10,7 +10,7 @@
  *
  * @see Url.cpp
  */
- 
+
 #ifndef UV_URL_H_
 #define UV_URL_H_
 
@@ -27,7 +27,7 @@ namespace uv
  */
 class Url
 {
-  public:
+public:
 
     /**
      * Encode a URL

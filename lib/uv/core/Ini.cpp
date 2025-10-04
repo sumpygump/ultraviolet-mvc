@@ -52,8 +52,8 @@ void uv::Ini::readFile()
         }
     } else {
         std::cerr << "Error: Cannot read ini file \""
-                  << this->filename.c_str()
-                  << "\"" << std::endl;
+            << this->filename.c_str()
+            << "\"" << std::endl;
     }
 
     iniStream.close();
@@ -77,8 +77,8 @@ int uv::Ini::readLine(std::string line)
     bool foundKey = false;
     std::string key;
     std::string value;
-    std::string section = "default";
-    std::string::size_type pos = 0;
+    std::string section                  = "default";
+    std::string::size_type pos           = 0;
     const std::string::size_type charLen = std::string(" ").length();
 
     if (!this->currentSection.empty()) {
@@ -104,8 +104,8 @@ int uv::Ini::readLine(std::string line)
 
             // If the value is enclosed in quotes, remove the quotes
             if (value.substr(0, 1) == "\""
-                    && value.substr(value.length() - charLen, 1) == "\""
-               ) {
+                && value.substr(value.length() - charLen, 1) == "\""
+            ) {
                 value = value.substr(charLen, value.length() - charLen * 2);
             }
 
@@ -149,9 +149,9 @@ int uv::Ini::readLine(std::string line)
         // If we haven't found the key yet, set the key
         // This prevents (whitespace) = value from being parsed
         if (foundKey == false) {
-            key = line.substr(i, pos - i);
-            key = Strlib::trim(key);
-            i = pos;
+            key      = line.substr(i, pos - i);
+            key      = Strlib::trim(key);
+            i        = pos;
             foundKey = true;
         }
 
@@ -170,8 +170,8 @@ int uv::Ini::readLine(std::string line)
  */
 void uv::Ini::setPair(const std::string &key, const std::string &value, const std::string &section)
 {
-    uv::iniPairs pair = this->keyValuePairs[section];
-    pair[key] = value;
+    uv::iniPairs pair            = this->keyValuePairs[section];
+    pair[key]                    = value;
     this->keyValuePairs[section] = pair;
 }
 

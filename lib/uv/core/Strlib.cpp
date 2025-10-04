@@ -57,12 +57,12 @@ std::vector<std::string> uv::Strlib::explode(const std::string &delimiter, const
 /**
  *  
  */
-std::string uv::Strlib::trim(std::string& str)
+std::string uv::Strlib::trim(std::string &str)
 {
     // Trim Both leading and trailing whitespace
 
     const size_t startpos = str.find_first_not_of(" \t\r\n");
-    const size_t endpos = str.find_last_not_of(" \t\r\n");
+    const size_t endpos   = str.find_last_not_of(" \t\r\n");
 
     // if all spaces or empty return an empty string
     if (std::string::npos == startpos || std::string::npos == endpos) {
@@ -76,7 +76,8 @@ std::string uv::Strlib::trim(std::string& str)
 /**
  *  
  */
-char uv::Strlib::hexToChar(const char first, const char second) {
+char uv::Strlib::hexToChar(const char first, const char second)
+{
     int digit;
 
     digit = (first >= 'A' ? ((first & 0xDF) - 'A') + 10 : (first - '0'));

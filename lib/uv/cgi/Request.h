@@ -33,7 +33,8 @@ namespace uv
  */
 class Request
 {
-  public:
+public:
+
     /**
      * Default constructor
      */
@@ -64,7 +65,7 @@ class Request
      */
     std::string rawInput;
 
-  protected:
+protected:
 
     /**
      * Initialize post params

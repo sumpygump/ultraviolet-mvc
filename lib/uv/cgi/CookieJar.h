@@ -29,12 +29,12 @@ namespace uv
  *
  * See rfc 2109 for version 1 of HTTP Cookies
  * http://www.w3.org/Protocols/rfc2109/rfc2109.txt
- * 
+ *
  * @author Jansen Price <jansen.price@gmail.com>
  */
 class CookieJar
 {
-  public:
+public:
 
     /**
      * Default constructor
@@ -49,24 +49,24 @@ class CookieJar
     /**
      * Parse the cookie header and set cookies
      */
-    void readCookies(const std::string& cookieString);
+    void readCookies(const std::string &cookieString);
 
     /**
      * Add a cookie to the jar
      */
-    int addCookie(Cookie * cookie);
+    int addCookie(Cookie *cookie);
 
     /**
      * Retrieve a cookie by name
      */
-    Cookie* retrieve(const std::string &name);
+    Cookie *retrieve(const std::string &name);
 
     /**
      * List cookies in jar
      */
     std::string list();
 
-  protected:
+protected:
 
     /**
      * Storage for cookies
