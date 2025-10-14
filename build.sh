@@ -1,4 +1,6 @@
 #!/bin/bash
 
-cd build && make
-cp index ../web/index.cgi
+cmake --build build
+
+echo 'Copying binary to web/index.cgi'
+cp build/index web/index.cgi
