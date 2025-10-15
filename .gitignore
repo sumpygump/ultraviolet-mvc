@@ -5,3 +5,4 @@ doc/doxygen.log
 doc/doxygen.err.log
 doc/html
 .idea
+build

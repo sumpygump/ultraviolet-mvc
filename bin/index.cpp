@@ -74,7 +74,7 @@ int main()
     }
 
     std::string br = "<br />";
-    std::ostringstream oss (std::ostringstream::out);
+    std::ostringstream oss(std::ostringstream::out);
     uv::InternalChrome ic;
 
     if (request.get.keyExists("test")) {
