@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Config.h
@@ -17,7 +15,6 @@
 #define UV_CONFIG_H_
 
 #include <string>
-#include <map>
 
 #include "core/Ini.h"
 
@@ -31,23 +28,22 @@ namespace uv
  * Store configuration variables
  * 
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class Config
 {
-  protected:
+protected:
 
     /**
      *  
      */
     Ini source;
 
-  public:
+public:
 
     /**
      *  
      */
-    Config(std::string filename);
+    explicit Config(const std::string &filename);
 
     /**
      *  

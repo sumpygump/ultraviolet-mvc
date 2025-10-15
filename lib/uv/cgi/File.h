@@ -31,11 +31,11 @@ class Random;
  * The File class represents a file upload
  * 
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class File
 {
-  public:
+public:
+
     /**
      * The name of the file from the form post
      */
@@ -64,12 +64,15 @@ class File
     /**
      * Default constructor
      */
-    File();
+    File()
+    {
+        filesize = 0;
+    }
 
     /**
      * Constructor
      */
-    File(std::string infilename, std::string infiledata, std::string inContentType);
+    File(const std::string &infilename, const std::string &infiledata, const std::string &inContentType);
 
     /**
      * Initialize object (called after construction)
@@ -84,20 +87,20 @@ class File
     /**
      * Save the temp file
      */
-    void saveTempFile();
+    void saveTempFile() const;
 
     /**
      * List file data
      */
-    std::string list();
+    [[nodiscard]] std::string list() const;
 
-  protected:
+protected:
 
     /**
      * The random object
      */
     static uv::Random randomizer;
-    
+
 }; // class File
 
 } // namespace uv

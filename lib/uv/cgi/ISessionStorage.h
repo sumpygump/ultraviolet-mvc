@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file ISessionStorage.h
@@ -13,6 +11,7 @@
 
 #ifndef UV_ISESSIONSTORAGE_H_
 #define UV_ISESSIONSTORAGE_H_
+#include <string>
 
 /**
  * Ultraviolet Namespace
@@ -24,22 +23,24 @@ namespace uv
  * Session storage interface
  *
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class ISessionStorage
 {
-  public:
+public:
+
     /**
      * Destructor
      */
-    virtual ~ISessionStorage() {}
+    virtual ~ISessionStorage()
+    {
+    }
 
     /**
      * Load the data for a given session id
      *
      * @param sessionId The session id
      */
-    virtual std::fstream* load(std::string sessionId);
+    virtual std::fstream *load(std::string sessionId);
 
     /**
      * Save data for a given session id

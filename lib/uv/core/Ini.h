@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Ini.h
@@ -34,11 +32,10 @@ typedef std::map<std::string, std::string> iniPairs;
  * Read and parse an ini file
  * 
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class Ini
 {
-  protected:
+protected:
 
     /**
      * Key-value pairs map
@@ -49,12 +46,12 @@ class Ini
      * Storage for the current section (during parsing)
      */
     std::string currentSection;
-    
+
     /**
      * Storage for filename of .ini file
      */
     std::string filename;
-    
+
     /**
      * Read the file
      */
@@ -74,9 +71,9 @@ class Ini
      * @param value A value
      * @param section The name of the section
      */
-    void setPair(std::string key, std::string value, std::string section);
-    
-  public:
+    void setPair(const std::string &key, const std::string &value, const std::string &section);
+
+public:
 
     /**
      * Default constructor
@@ -86,31 +83,29 @@ class Ini
     /**
      * Constructor with filename
      *
-     * @param filename Name of file (path)
+     * @param filenameInput Name of file (path)
      */
-    Ini(std::string filename);
-    
+    explicit Ini(const std::string &filenameInput);
+
     /**
      * Get pairs
-     *
-     * @param Retrieve all the pairs in this ini file
      */
     std::map<std::string, iniPairs> getPairs();
 
     /**
      * Get a single value
      *
-     * @param Key name
-     * @param Section name
+     * @param key name
+     * @param section name
      */
-    std::string get(std::string key, std::string section);
+    std::string get(const std::string &key, const std::string &section);
 
     /**
      * Get a section
      *
-     * @param Section name
+     * @param section name
      */
-    uv::iniPairs getSection(std::string section);
+    uv::iniPairs getSection(const std::string &section);
 
     /**
      * List the key value pairs

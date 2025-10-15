@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file CookieJar.cpp
@@ -36,10 +34,10 @@ uv::CookieJar::CookieJar()
 uv::CookieJar::~CookieJar()
 {
     std::vector<Cookie*>::const_iterator cookieIterator;
-    std::vector<Cookie*>::const_iterator cookieBegin = cookies.begin();
-    std::vector<Cookie*>::const_iterator cookieEnd = cookies.end();
+    const auto cookieBegin = cookies.begin();
+    const auto cookieEnd = cookies.end();
 
-    for (cookieIterator = cookieBegin; cookieIterator < cookieEnd; cookieIterator++) {
+    for (cookieIterator = cookieBegin; cookieIterator < cookieEnd; ++cookieIterator) {
         delete *cookieIterator;
     }
 }
@@ -47,34 +45,33 @@ uv::CookieJar::~CookieJar()
 /**
  *  
  */
-void uv::CookieJar::readCookies(std::string cookieString)
+void uv::CookieJar::readCookies(const std::string &cookieString)
 {
     std::string::size_type pos = 0;
     std::string::size_type oldPos, limit;
-    std::string::size_type sepLen = std::string(";").length();
+    const std::string::size_type sepLen = std::string(";").length();
     std::string name, value;
 
     oldPos = pos;
-    limit  = 0;
 
     while (true) {
-        pos = cookieString.find("=", oldPos);
+        pos = cookieString.find('=', oldPos);
 
         if (std::string::npos == pos) {
             break;
         }
 
-        limit = cookieString.find(";", pos);
+        limit = cookieString.find(';', pos);
 
         if (std::string::npos == limit) {
             limit = cookieString.length();
         }
 
         // Create a new cookie
-        Cookie* cookie = new Cookie();
+        auto *cookie = new Cookie();
 
         // Retrieve the cookie name
-        name  = cookieString.substr(oldPos, pos - oldPos);
+        name = cookieString.substr(oldPos, pos - oldPos);
         Strlib::trim(name);
 
         // Retrieve the cookie value
@@ -100,22 +97,22 @@ void uv::CookieJar::readCookies(std::string cookieString)
 /**
  *  
  */
-int uv::CookieJar::addCookie(Cookie * cookie)
+int uv::CookieJar::addCookie(Cookie *cookie)
 {
     cookies.push_back(cookie);
-    return (int) cookies.size();
+    return static_cast<int>(cookies.size());
 }
 
 /**
  *  
  */
-uv::Cookie* uv::CookieJar::retrieve(std::string name)
+uv::Cookie *uv::CookieJar::retrieve(const std::string &name)
 {
     std::vector<Cookie*>::const_iterator cookieIterator;
-    std::vector<Cookie*>::const_iterator cookieBegin = cookies.begin();
-    std::vector<Cookie*>::const_iterator cookieEnd = cookies.end();
+    const auto cookieBegin = cookies.begin();
+    const auto cookieEnd = cookies.end();
 
-    for (cookieIterator = cookieBegin; cookieIterator < cookieEnd; cookieIterator++) {
+    for (cookieIterator = cookieBegin; cookieIterator < cookieEnd; ++cookieIterator) {
         if ((*cookieIterator)->getName() == name) {
             // Return pointer to the cookie object
             return (*cookieIterator);
@@ -123,7 +120,7 @@ uv::Cookie* uv::CookieJar::retrieve(std::string name)
     }
 
     // Return null when there's no cookie available
-    return NULL;
+    return nullptr;
 }
 
 /**
@@ -132,11 +129,11 @@ uv::Cookie* uv::CookieJar::retrieve(std::string name)
 std::string uv::CookieJar::list()
 {
     std::vector<Cookie*>::const_iterator cookieIterator;
-    std::vector<Cookie*>::const_iterator cookieBegin = cookies.begin();
-    std::vector<Cookie*>::const_iterator cookieEnd = cookies.end();
-    std::string output = "";
+    const auto cookieBegin = cookies.begin();
+    const auto cookieEnd = cookies.end();
+    std::string output;
 
-    for (cookieIterator = cookieBegin; cookieIterator < cookieEnd; cookieIterator++) {
+    for (cookieIterator = cookieBegin; cookieIterator < cookieEnd; ++cookieIterator) {
         output.append((*cookieIterator)->toString());
         output.append("\n");
     }

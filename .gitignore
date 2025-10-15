@@ -1,0 +1,8 @@
+bin/*.o
+bin/index.cgi
+web/index.cgi
+doc/doxygen.log
+doc/doxygen.err.log
+doc/html
+.idea
+build

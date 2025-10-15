@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Url.h
@@ -12,7 +10,7 @@
  *
  * @see Url.cpp
  */
- 
+
 #ifndef UV_URL_H_
 #define UV_URL_H_
 
@@ -29,7 +27,7 @@ namespace uv
  */
 class Url
 {
-  public:
+public:
 
     /**
      * Encode a URL
@@ -39,7 +37,7 @@ class Url
     /**
      * Decode a URL
      */
-    static std::string decode(std::string input);
+    static std::string decode(const std::string &input);
 
 }; // class Url
 

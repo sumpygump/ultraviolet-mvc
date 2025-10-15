@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file InternalChrome.h
@@ -17,7 +15,6 @@
 #define UV_INTERNALCHROME_H_
 
 #include <string>
-#include <sstream>
 
 /**
  * Ultraviolet namespace
@@ -29,11 +26,10 @@ namespace uv
  * Internal chrome for default layout
  * 
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class InternalChrome
 {
-  public:
+public:
 
     /**
      * Default constructor
@@ -46,17 +42,17 @@ class InternalChrome
      * @param content The page contents
      * @return String with chrome (html)
      */
-    std::string wrapContent(std::string content);
+    std::string wrapContent(const std::string &content) const;
 
     /**
      * Set title
      *
-     * @param title The page title
+     * @param titleInput The page title
      * @return void
      */
-    void setTitle(std::string title);
+    void setTitle(const std::string &titleInput);
 
-  protected:
+protected:
 
     /**
      * Page title
@@ -68,7 +64,7 @@ class InternalChrome
      *
      * @return String including html style tag
      */
-    std::string getStyles();
+    static std::string getStyles();
 }; // class InternalChrome
 
 } // namespace uv

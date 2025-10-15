@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Random.cpp
@@ -14,8 +12,9 @@
  */
 
 #include <cstdlib>
-#include <string>
 #include <ctime>
+#include <random>
+#include <string>
 
 #include "Random.h"
 
@@ -24,23 +23,7 @@ bool uv::Random::isSeeded = false;
 /**
  *  
  */
-/*uv::Random::Random()
-{
-    setSeed();
-}*/
-
-/**
- *  
- */
-/*uv::Random::Random(int seed)
-{
-    setSeed(seed);
-}*/
-
-/**
- *  
- */
-void uv::Random::setSeed(int seed)
+void uv::Random::setSeed(const unsigned int seed)
 {
     srand(seed);
     isSeeded = true;
@@ -48,15 +31,15 @@ void uv::Random::setSeed(int seed)
 
 void uv::Random::setSeed()
 {
-    time_t timeSeed = time(NULL);
-    
-    setSeed(timeSeed);
+    const time_t timeSeed = time(nullptr);
+
+    setSeed(static_cast<unsigned int>(timeSeed));
 }
 
 /**
  *  
  */
-std::string uv::Random::generateString(int length)
+std::string uv::Random::generateString(const size_t length)
 {
     if (!isSeeded) {
         setSeed();
@@ -65,8 +48,13 @@ std::string uv::Random::generateString(int length)
     std::string result;
     result.resize(length);
 
-    for (int i = 0; i < length; i++) {
-        result[i] = charset[rand() % charset.length()];
+    std::random_device rd; // a seed source for the random number engine
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> distrib(1, static_cast<int>(charset.length()));
+
+    for (size_t i = 0; i < length; i++) {
+        //result[i] = charset[static_cast<size_t>(rand()) % charset.length()];
+        result[i] = charset[static_cast<size_t>(distrib(gen))];
     }
 
     return result;

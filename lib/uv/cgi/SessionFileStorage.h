@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file SessionFileStorage.h
@@ -27,11 +25,10 @@ namespace uv
  * Session storage in a file
  *
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class SessionFileStorage
 {
-  public:
+public:
 
     /**
      * Default constructor
@@ -41,19 +38,19 @@ class SessionFileStorage
     /**
      * Load
      */
-    std::string load(std::string sessionId);
+    std::string load(const std::string &sessionId) const;
 
     /**
      * Save
      */
-    bool save(std::string sessionId, std::string data);
+    bool save(const std::string &sessionId, const std::string &data) const;
 
     /**
      * Set the path
      */
-    void setPath(std::string path);
+    void setPath(const std::string &pathInput);
 
-  protected:
+protected:
 
     /**
      * Path to session files

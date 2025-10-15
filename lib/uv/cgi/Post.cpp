@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Post.cpp
@@ -15,21 +13,19 @@
  * @see uv::Params
  */
 
-#include <iterator>
-
 #include "Post.h"
 #include "File.h"
 #include "core/Strlib.h"
 
 /**
- * Parse input 
+ * Parse input
  */
-void uv::Post::parseInput(std::string input, std::string contentType)
+void uv::Post::parseInput(const std::string &input, const std::string &contentType)
 {
     // Detect whether multipart/form-data
     if (contentType.substr(0, 9) == "multipart") {
         // get boundary
-        std::string boundary = getBoundary(contentType);
+        const std::string boundary = getBoundary(contentType);
 
         std::string fieldSeparator = "--";
         fieldSeparator.append(boundary);
@@ -40,9 +36,9 @@ void uv::Post::parseInput(std::string input, std::string contentType)
         terminatorSeparator.append("--\r\n");
 
         std::string::size_type pos;
-        std::string::size_type start = input.find(fieldSeparator);
-        std::string::size_type fsLen = fieldSeparator.length();
-        std::string::size_type oldPos = start + fsLen;
+        const std::string::size_type start = input.find(fieldSeparator);
+        const std::string::size_type fsLen = fieldSeparator.length();
+        std::string::size_type oldPos      = start + fsLen;
 
         while (true) {
             pos = input.find(fieldSeparator, oldPos);
@@ -73,10 +69,10 @@ void uv::Post::parseInput(std::string input, std::string contentType)
 /**
  *
  */
-std::string uv::Post::getBoundary(std::string data)
+std::string uv::Post::getBoundary(const std::string &data)
 {
-    std::string boundaryString = "boundary=";
-    std::string::size_type pos = data.find(boundaryString);
+    const std::string boundaryString = "boundary=";
+    const std::string::size_type pos = data.find(boundaryString);
 
     if (pos == std::string::npos) {
         return std::string("");
@@ -87,31 +83,32 @@ std::string uv::Post::getBoundary(std::string data)
 }
 
 /**
- *  
+ *
  */
-void uv::Post::parseFormField(std::string data)
+void uv::Post::parseFormField(const std::string &data)
 {
     std::string value;
     std::string::size_type valueStart;
-    std::string fieldValueTerminator = "\r\n";
-    std::string headerTerminator = "\r\n\r\n";
-    std::string::size_type headLimit = data.find(headerTerminator, 0);
+    std::string fieldValueTerminator       = "\r\n";
+    const std::string headerTerminator     = "\r\n\r\n";
+    const std::string::size_type headLimit = data.find(headerTerminator, 0);
 
     if (std::string::npos == headLimit) {
         // error
     }
 
     valueStart = headLimit + headerTerminator.length();
-    value = data.substr(valueStart, data.length());
-    value = Strlib::trim(value);
+    value      = data.substr(valueStart, data.length());
+    value      = Strlib::trim(value);
 
     std::map<std::string, std::string> header = parseMultipartHeader(data.substr(0, headLimit));
 
     // save the value
-    if (header.find("filename") != header.end() && header["filename"] != "") {
+    if (header.find("filename") != header.end() && !header["filename"].empty()) {
         // is a file upload
         files.insert(
-            std::map<std::string, uv::File>::value_type (header["name"], uv::File(header["filename"], value, header["content-type"]))
+            std::map<std::string, uv::File>::value_type(header["name"],
+                uv::File(header["filename"], value, header["content-type"]))
         );
     } else {
         // is a regular form field
@@ -120,17 +117,17 @@ void uv::Post::parseFormField(std::string data)
 }
 
 /**
- *  
+ *
  */
-std::map<std::string, std::string> uv::Post::parseMultipartHeader(std::string data)
+std::map<std::string, std::string> uv::Post::parseMultipartHeader(const std::string &data)
 {
-    std::string::size_type quotemark = std::string("\"").length();
+    const std::string::size_type quotemark = std::string("\"").length();
     std::map<std::string, std::string> params;
     std::vector<std::string> lines;
     std::vector<std::string> pairs;
     std::vector<std::string> parts;
-    int i;
-    int line;
+    size_t i;
+    size_t line;
 
     // A regular multipart header will look like this:
     // Content-Disposition: form-data; name="field2"\r\n\r\n
@@ -145,10 +142,10 @@ std::map<std::string, std::string> uv::Post::parseMultipartHeader(std::string da
     lines = Strlib::explode("\r\n", data);
 
     for (line = 0; line < lines.size(); line++) {
-
         if (lines[line].find("Content-Type:") == 0) {
             if (lines[line].find(": ") != std::string::npos) {
                 parts = Strlib::explode(": ", lines[line]);
+
                 params["content-type"] = Strlib::trim(parts[1]);
             }
         }
@@ -157,8 +154,8 @@ std::map<std::string, std::string> uv::Post::parseMultipartHeader(std::string da
 
         // The zeroth item is just "Content-Disposition: form-data"
         for (i = 1; i < pairs.size(); i++) {
-            if (pairs[i].find("=") != std::string::npos) {
-                parts = Strlib::explode("=", pairs[i]);
+            if (pairs[i].find('=') != std::string::npos) {
+                parts    = Strlib::explode("=", pairs[i]);
                 parts[0] = Strlib::trim(parts[0]);
                 parts[1] = Strlib::trim(parts[1]);
 
@@ -171,8 +168,11 @@ std::map<std::string, std::string> uv::Post::parseMultipartHeader(std::string da
 }
 
 /**
- *  
+ *
  */
-void uv::Post::parseInput(std::ios stream)
+/*
+void uv::Post::parseInput(std::ios &stream)
 {
+    // TODO
 }
+*/

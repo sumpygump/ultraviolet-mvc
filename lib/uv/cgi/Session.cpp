@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Session.cpp
@@ -16,7 +14,7 @@
 #include <string>
 #include <sstream>
 #include <ctime>
-#include <iostream>
+#include <utility>
 
 #include "cgi/Session.h"
 #include "cgi/Environment.h"
@@ -24,15 +22,16 @@
 #include "hashlibpp/hl_md5wrapper.h"
 
 /**
- *  
+ *
  */
 uv::Session::Session()
 {
     this->sessionId = "";
+    this->storage   = nullptr;
 }
 
 /**
- *  
+ *
  */
 uv::Session::~Session()
 {
@@ -40,35 +39,35 @@ uv::Session::~Session()
 }
 
 /**
- *  
+ *
  */
-uv::Session::Session(std::string sessionId)
+uv::Session::Session(const std::string &setSessionId)
 {
-    this->setId(sessionId);
+    this->storage = nullptr;
+    this->setId(setSessionId);
     this->load();
 }
 
 /**
- *  
+ *
  */
 void uv::Session::load()
 {
     // load data from storage
     this->initStorage();
 
-    std::string sessdata = this->storage->load(this->sessionId);
+    const std::string sessdata = this->storage->load(this->sessionId);
 
     this->parseInput(sessdata);
 }
 
 /**
- *  
+ *
  */
-void uv::Session::setId(std::string sessionId)
+void uv::Session::setId(const std::string &setSessionId)
 {
-    this->sessionId = sessionId;
-
-    // validate sessionid?
+    this->sessionId = setSessionId;
+    // TODO validate sessionId
 }
 
 /**
@@ -77,17 +76,17 @@ void uv::Session::setId(std::string sessionId)
 std::string uv::Session::createId()
 {
     hashwrapper *h = new md5wrapper();
-    Environment *env = new Environment();
+    auto *env      = new Environment();
 
     h->test(); // This ensures the library is working
 
-    time_t seconds = time(NULL);
+    const time_t seconds = time(nullptr);
     std::stringstream ss;
 
     ss << env->get(Environment::kRemoteAddr)
         << env->get(Environment::kServerName)
         << seconds;
-    
+
     this->sessionId = h->getHashFromString(ss.str());
 
     delete h;
@@ -97,7 +96,7 @@ std::string uv::Session::createId()
 }
 
 /**
- *  
+ *
  */
 std::string uv::Session::getId()
 {
@@ -105,15 +104,15 @@ std::string uv::Session::getId()
 }
 
 /**
- *  
+ *
  */
-void uv::Session::setParam(std::string name, std::string value)
+void uv::Session::setParam(const std::string &name, std::string value)
 {
-    this->vars[name] = value;
+    this->vars[name] = std::move(value);
 }
 
 /**
- *  
+ *
  */
 void uv::Session::save()
 {
@@ -122,7 +121,7 @@ void uv::Session::save()
 }
 
 /**
- *  
+ *
  */
 void uv::Session::initStorage()
 {

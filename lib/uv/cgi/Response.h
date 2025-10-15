@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Response.h
@@ -29,11 +27,11 @@ namespace uv
  * The Response class stores object used for the HTTP response
  *
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class Response
 {
-  public:
+public:
+
     /**
      * Default constructor
      */
@@ -53,4 +51,4 @@ class Response
 
 } // namespace uv
 
-#endif // UV_RESPONSE_H
+#endif // UV_RESPONSE_H_

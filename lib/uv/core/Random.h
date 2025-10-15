@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Random.h
@@ -26,27 +24,16 @@ namespace uv
  * Random provides functionality for generating random things
  * 
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class Random
 {
-  public:
-
-    /**
-     * Default constructor
-     */
-//    Random();
-
-    /**
-     * Constructor with seed
-     */
-//    Random(int seed);
+public:
 
     /**
      * Set the randomize seed
      */
-    static void setSeed(int seed);
-    
+    static void setSeed(unsigned int seed);
+
     /**
      * Set the randomize seed
      */
@@ -55,9 +42,9 @@ class Random
     /**
      * Generate a random string with specifed length
      */
-    static std::string generateString(int length);
+    static std::string generateString(size_t length);
 
-  protected:
+protected:
 
     /**
      * Indicates whether the seed has been set

@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file SessionFileStorage.cpp
@@ -31,7 +29,7 @@ uv::SessionFileStorage::SessionFileStorage()
 /**
  *
  */
-std::string uv::SessionFileStorage::load(std::string sessionId)
+std::string uv::SessionFileStorage::load(const std::string &sessionId) const
 {
     std::string filename = this->path;
     filename.append("/");
@@ -55,7 +53,7 @@ std::string uv::SessionFileStorage::load(std::string sessionId)
 /**
  *  
  */
-bool uv::SessionFileStorage::save(std::string sessionId, std::string data)
+bool uv::SessionFileStorage::save(const std::string &sessionId, const std::string &data) const
 {
     std::string filename = this->path;
     filename.append("/");
@@ -72,7 +70,7 @@ bool uv::SessionFileStorage::save(std::string sessionId, std::string data)
 /**
  *  
  */
-void uv::SessionFileStorage::setPath(std::string path)
+void uv::SessionFileStorage::setPath(const std::string &pathInput)
 {
-    this->path = path;
+    this->path = pathInput;
 }

@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Info.cpp
@@ -13,10 +11,16 @@
  * Provides utilities to display information about the CGI system
  */
 
-#include <iostream>
 #include <string>
 
 #include "Info.h"
+
+/**
+ *
+ */
+uv::Info::Info()
+{
+}
 
 /**
  *  
@@ -50,9 +54,10 @@ std::string uv::Info::displayEnvironment(Environment env)
 /**
  *  
  */
-std::string uv::Info::avPairRow(std::string attr, std::string value)
+std::string uv::Info::avPairRow(const std::string &attr, const std::string &value)
 {
-    std::string output = "<tr><td class=\"uv-attr\">";
+    std::string output;
+    output.append("<tr><td class=\"uv-attr\">");
     output.append(attr);
     output.append("</td><td class=\"uv-value\">");
     output.append(value);

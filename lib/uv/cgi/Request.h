@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Request.h
@@ -20,7 +18,6 @@
 #include "cgi/CookieJar.h"
 #include "cgi/Params.h"
 #include "cgi/Post.h"
-#include "cgi/Input.h"
 
 /**
  * Ultraviolet Namespace
@@ -33,11 +30,11 @@ namespace uv
  * as part of the HTTP request (GET method)
  *
  * @author Jansen Price <jansen.price@gmail.com>
- * @version $Id$
  */
 class Request
 {
-  public:
+public:
+
     /**
      * Default constructor
      */
@@ -68,7 +65,7 @@ class Request
      */
     std::string rawInput;
 
-  protected:
+protected:
 
     /**
      * Initialize post params
@@ -84,4 +81,4 @@ class Request
 
 } // uv namespace
 
-#endif // UV_REQUEST_H
+#endif // UV_REQUEST_H_

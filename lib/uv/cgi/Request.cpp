@@ -3,8 +3,6 @@
  * Copyright (C) 2010 Lost Mind Software
  *
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
- *
- * @version $Id$
  */
 
 /** @file Request.cpp
@@ -13,8 +11,9 @@
  * Handles parsing HTTP requests.
  */
 
-#include <iostream>
+#include <vector>
 
+#include "Environment.h"
 #include "Request.h"
 
 /**
@@ -49,9 +48,8 @@ void uv::Request::initPost()
  */
 void uv::Request::readRawInput()
 {
-    uv::Input input;
     std::vector<char> data(this->env.getContentLength());
 
-    input.read(&data[0], this->env.getContentLength());
+    uv::Input::read(&data[0], this->env.getContentLength());
     this->rawInput = std::string(&data[0], this->env.getContentLength());
 }
