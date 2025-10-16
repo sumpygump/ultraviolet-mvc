@@ -29,7 +29,7 @@ std::string uv::Info::displayEnvironment(Environment env)
 {
     std::string output;
 
-    output = "<table class=\"uv-av-list\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n";
+    output = "<div class=\"uv-table\"><table class=\"uv-av-list\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n";
 
     output.append(avPairRow("Http Host", env[Environment::kHttpHost]));
     output.append(avPairRow("Http Accept", env["HTTP_ACCEPT"]));
@@ -46,7 +46,7 @@ std::string uv::Info::displayEnvironment(Environment env)
     output.append(avPairRow("Content type", env[Environment::kContentType]));
     output.append(avPairRow("Remote addr", env[Environment::kRemoteAddr]));
 
-    output.append("</table>\n");
+    output.append("</table></div>\n");
 
     return output;
 }
