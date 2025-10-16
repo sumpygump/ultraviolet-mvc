@@ -1,4 +1,4 @@
-target_sources(index PRIVATE
+add_library(uv_core_lib
     Ini.cpp
     Ini.h
     Random.cpp
@@ -6,3 +6,4 @@ target_sources(index PRIVATE
     Strlib.cpp
     Strlib.h
 )
+target_include_directories(uv_core_lib PUBLIC lib/core)

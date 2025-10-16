@@ -16,7 +16,7 @@
 #include <iostream>
 
 #include "Ini.h"
-#include "core/Strlib.h"
+#include "Strlib.h"
 
 /**
  *

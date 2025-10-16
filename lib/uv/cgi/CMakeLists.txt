@@ -1,4 +1,4 @@
-target_sources(index PRIVATE
+add_library(uv_cgi_lib
     Cookie.cpp
     Cookie.h
     CookieJar.cpp
@@ -29,3 +29,5 @@ target_sources(index PRIVATE
     Url.cpp
     Url.h
 )
+target_link_libraries(uv_cgi_lib uv_core_lib hashlibpp)
+target_include_directories(uv_cgi_lib PRIVATE ${PROJECT_INCLUDE_DIRS})

@@ -6,3 +6,4 @@ doc/doxygen.err.log
 doc/html
 .idea
 build
+web/info.cgi

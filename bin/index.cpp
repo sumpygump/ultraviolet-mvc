@@ -34,11 +34,6 @@
  */
 int main()
 {
-    // Example of config
-    auto config = uv::Config("test.ini");
-    // Get a value out of the cohfig like this:
-    // std::string dbserver = config.get("server", "database");
-
     uv::Request request;
     uv::Response response;
 
@@ -51,10 +46,6 @@ int main()
     // Prepare headers
     response.headers.set("Content-type: text/html");
     response.headers.set("X-Powered-By: Ultraviolet/0.8");
-    response.headers.set("Set-Cookie: testcookie1=\"true\"; max-age=1024; comment=cookies have comments");
-    response.headers.set("Set-Cookie: id=2454; max-age=1024; version=1");
-    response.headers.set("Set-Cookie: userid=154844746557324485445; max-age=1024; version=1");
-    response.headers.set("Set-Cookie: deleteme=; max-age=0"); // to delete a cookie, set max-age=0
 
     // Set up session
     uv::Session* session = nullptr;
@@ -64,7 +55,6 @@ int main()
             session = new uv::Session();
             std::string sessionId = session->createId();
             response.headers.set("Set-Cookie: UVSESSID=" + sessionId);
-            session->setParam("gravy", "thick");
             session->save();
         } else {
             session = new uv::Session(sessionCookie->getValue());
@@ -77,61 +67,7 @@ int main()
     std::ostringstream oss(std::ostringstream::out);
     uv::InternalChrome ic;
 
-    if (request.get.keyExists("test")) {
-        if (request.get["test"] == "post") {
-            ic.setTitle("test POST | Ultraviolet MVC");
-            oss << "<h1>Ultraviolet : Test POST</h1>" << std::endl
-                << "<p>Submit the form to test the POST request.</p>" << std::endl
-                << R"(<form action="" method="post">)"
-                << R"(<label>field1 <input type="text" name="field1" value="test value" /></label>)" << br
-                << R"(<label>field2 <input type="text" name="field2" value="test value 2" /></label>)" << br
-                << R"(<label>check1 <input type="checkbox" name="check1" value="1" /></label>)" << br
-                << R"(<input type="submit" name="submit" value="Submit" />)"
-                << "</form>" << std::endl
-                << "<p>Submit the form to test the multipart/form-data request.</p>" << std::endl
-                << R"(<form action="" method="post" enctype="multipart/form-data">)"
-                << R"(<label>field1 <input type="text" name="field1" value="test value" /></label>)" << br
-                << R"(<label>field2 <input type="text" name="field2" value="test value 2" /></label>)" << br
-                << R"(<label>testfile <input type="file" name="testfile" /></label>)" << br
-                << R"(<label>testfile2 <input type="file" name="testfile2" /></label>)" << br
-                << R"(<input type="submit" name="submit" value="Submit" />)"
-                << "</form>" << std::endl
-                << "<p>Use the querystring <a href=\"?test=post&amp;display-stdin=true\">?display-stdin=true</a> to display stdin data (for troubleshooting)</a></p>";
-        } else if (request.get["test"] == "404") {
-            response.headers.set("Status: 404"); // example of 404 status
-            ic.setTitle("Error 404");
-            oss << "<h1 class=\"error\">404 Not Found</h1>"
-                << "<p class=\"error-message\">The file could not be found.</p>";
-        }
-    } else {
-        oss << "<h1>Ultraviolet is Working</h1>" << std::endl
-            << "<p><a href=\"?test=post\">Test POST</a></p>" << std::endl;
-    }
-
-    oss << "<h2>Environment</h2>\n"
-        << uv::Info::displayEnvironment(request.env)
-        << "<h2>Other Data:</h2>\n"
-        << "<strong>GET vars</strong><pre>" << request.get.list() << "</pre>"
-        << "<strong>POST vars</strong><pre>" << request.post.list() << "</pre>"
-        << "<strong>Cookies</strong><pre>" << request.cookies.list() << "</pre>"
-        << "<strong>Config</strong><pre>" << config.list() << "</pre>";
-
-    if (session) {
-        oss << "<strong>Session</strong><pre>" << session->list() << "</pre>";
-    }
-
-    oss << "<strong>FILES vars</strong><pre>";
-    std::string filedump;
-    std::map<std::string, uv::File>::iterator curr, end;
-    for (curr = request.post.files.begin(), end = request.post.files.end(); curr != end; ++curr) {
-        filedump.append(" [" + curr->first + "] => \n" + curr->second.list() + "\n");
-    }
-
-    oss << filedump << "</pre>";
-
-    if (request.get.getParam("display-stdin") == "true") {
-        oss << "<pre>stdin:\n" << request.rawInput << "</pre>" << std::endl;
-    }
+    oss << "<h1>Ultraviolet is Working</h1>" << std::endl;
 
     // Begin output (send headers)
     std::cout << response.headers << std::endl;
